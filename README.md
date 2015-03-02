@@ -12,7 +12,7 @@ An attempt to make Hearthstone playable with keyboard only.
 ### Commands
 * Tab: Next item
 * Shift+Tab: Previous item
-* Space or : Activate Item
+* Space or Enter: Activate Item
 * Shift+Space or Shift+Enter: Grab/release card
 * q: Exit
 

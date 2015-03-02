@@ -7,8 +7,7 @@ An attempt to make Hearthstone playable with keyboard only.
 * MS Windows
 * [Install AutoHotKey](http://www.autohotkey.com/)
 * [Install Hearthstone](https://us.battle.net/account/download/)
-** MUST have the Shortcut in your Start Menu
-*** C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Hearthstone\Hearthstone
+* MUST have the Shortcut in your Start Menu  - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Hearthstone\Hearthstone
 
 ### Commands
 * Tab: Next item
@@ -34,7 +33,7 @@ An attempt to make Hearthstone playable with keyboard only.
 #### v.02 - Ready to Work
 A lot of stuff added.
 * System for creating "tab order" set up
-** Proof of concept positions for Main Menu and Play screens created
+* Proof of concept positions for Main Menu and Play screens created
 * Basic controls implemented
 
 #### v.01 - Proof of Concept

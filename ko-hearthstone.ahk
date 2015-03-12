@@ -1,3 +1,4 @@
+; WinHide ahk_class Shell_TrayWnd
 IfWinNotExist Hearthstone
 {
 	launchGame()
@@ -9,8 +10,35 @@ IfWinNotExist Hearthstone
 
 WinGetPos,,, width, height, Hearthstone
 
-midX := width / 2
-midY := height / 2
+; all the mouse positions will be described in relation to the center of the game window
+zeroX := width / 2
+zeroY := height / 2
+
+; Adjusting if in windowed mode
+SysGet, leftRightBorderSize, 32
+SysGet, topBottomBorderSize, 33
+SysGet, titleBarSize, 4
+
+; adjusted height/width reflect the play area without window borders
+adjWidth := width - leftRightBorderSize * 2
+adjHeight := height - titleBarSize - topBottomBorderSize * 2
+
+fullscreen := false
+if (height = adjHeight) && (width = adjWidth)
+{
+	fullscreen := true
+}
+
+; if windowed, adjust zeroY so it's consistent between windowed/fullscreen
+if (not fullscreen)
+{
+	zeroY := zeroY - (titleBarSize / 2)
+}
+
+; the usable horizontal space is determined relative to the playscreen height
+; any window area beyond minWidth is just padding for all non-"footer" screen elements
+; maxFromCenter is the maximum distance that should be considered from the minimum width
+minWidth := Ceil(adjHeight * 1.332)
 
 ; Setting up Screens and Screen Mouse Positions
 currScreen := 0
@@ -19,22 +47,62 @@ currScreenPosition := 0
 ; LEGEND OF SCREENS
 ; 0 - TODAY'S QUESTS
 ; 1 - MAIN MENU
-; 2 - PLAY SCREEN
+; 2 - PLAY
+; 3 - SOLO
 
 ; 0 - Today's Quests
-addScreenPosition(0,0,1)
+addScreenPosition(0,0,1) ; > 1 MAIN MENU
 completeScreen()
 
-; Main Menu
-addScreenPosition(0,.17,2)
+; 1 MAIN MENU
+addScreenPosition(0,.16,2) ; > 2 PLAY`
+addScreenPosition(0,.10,3) ; > 3 SOLO
+addScreenPosition(0,.03,4) ; > 4 ARENA
+addScreenPosition(-.42,-.4,5) ; > 5 SHOP
+addScreenPosition(-.29,-.4,6) ; > 6 QUEST LOG
+addScreenPosition(-.13,-.36,7) ; > 7 OPEN PACKS
+addScreenPosition(.07,-.36,8) ; > 8 MY COLLECTION
+addFooter()
 completeScreen()
 
-; Play Screen
-addScreenPosition(.42,-0.42,1)
+; 2 PLAY
+addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
 completeScreen()
 
-; keep track of dragging
-mDown = 0
+; 3 SOLO
+addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
+completeScreen()
+
+; 4 ARENA
+addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
+completeScreen()
+
+; 5 SHOP
+addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
+completeScreen()
+
+; 6 QUEST LOG
+addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
+completeScreen()
+
+; 7 0PEN PACKS
+addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
+completeScreen()
+
+; 8 MY COLLECTION
+addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
+completeScreen()
+
+; 9 FRIENDS
+; problem: the back button won't always go back to MAIN MENU
+; try to find a way to dynamically add the "footer" links to each screen
+; maybe add it as an argument of completeScreen()
+addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
+completeScreen()
+
+; 10 GAME MENU
+addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
+completeScreen()
 
 ; Initialize user environment
 WinWait Hearthstone
@@ -43,10 +111,12 @@ WinActivate Hearthstone
 currScreen := 0
 currScreenPosition := 0
 
+; wait for Hearthstone to fully load
+sleep 5000
+
 MoveMouse()
 
 ; The overlay is now in place. The script should run until closed by the user.
-
 
 ; HOTKEYS
 ; HOTKEYS
@@ -86,20 +156,6 @@ if (target%currScreen%_%currScreenPosition% > -1)
 }
 return
 
-+Space::
-+Enter::
-if (mDown = 0)
-{
-	Send {Mouse down}
-	mDown := 1
-}
-else
-{
-	Send {Mouse up}
-	mDown := 0
-}
-return
-
 ; FUNCTIONS
 ; FUNCTIONS
 ; FUNCTIONS
@@ -127,7 +183,7 @@ launchGame()
 ; Put mouse cursor on PLAY
 	WinGetPos,,,,battleHeight,Battle.net
 	xBattlePlay = 287
-	yBattlePlay := battleHeight - 65
+	yBattlePlay := battleHeight - 70
 
 	MouseMove, xBattlePlay, yBattlePlay
 	Send {Click}
@@ -139,6 +195,7 @@ closeGame()
 {
 	WinKill Hearthstone
 	WinKill Battle.net
+	; WinShow ahk_class Shell_TrayWnd
 	ExitApp
 }
 
@@ -152,6 +209,18 @@ addScreenPosition(x,y,targetScreen)
 	currScreenPosition += 1
 }
 
+addFooter()
+{
+	global
+	local foff := -.47 * adjWidth / minWidth
+	local goff := .40 * adjWidth / minWidth
+	local moff := .48 * adjWidth / minWidth
+	
+	addScreenPosition(foff,-.5,9) ; > 9 FRIENDS
+	addScreenPosition(goff,-.5,-1) ; > X GOLD
+	addScreenPosition(moff,-.5,10) ; > 10 GAME MENU
+}
+
 completeScreen()
 {
 	global
@@ -163,12 +232,9 @@ completeScreen()
 MoveMouse()
 {
 	global
-
-	blah1 := screenX%currScreen%_%currScreenPosition%
-	blah2 := screenY%currScreen%_%currScreenPosition%
-
-	local x := midX+width*screenX%currScreen%_%currScreenPosition%
-	local y := midY-height*screenY%currScreen%_%currScreenPosition%
+	; local x := zeroX+adjWidth*screenX%currScreen%_%currScreenPosition%
+	local x := zeroX+minWidth*screenX%currScreen%_%currScreenPosition%
+	local y := zeroY-adjHeight*screenY%currScreen%_%currScreenPosition%
 
 	MouseMove, x, y
 }

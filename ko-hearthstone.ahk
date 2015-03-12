@@ -66,41 +66,84 @@ addFooter()
 completeScreen()
 
 ; 2 PLAY
+addScreenPosition(-.33,.2,-1) ; Custom Deck Slots 1
+addScreenPosition(-.16,.2,-1) ; 2
+addScreenPosition(-.01,.2,-1) ; 3
+addScreenPosition(-.33,0,-1) ; 4
+addScreenPosition(-.16,0,-1) ; 5
+addScreenPosition(-.01,0,-1) ; 6
+addScreenPosition(-.33,-.2,-1) ; 7
+addScreenPosition(-.16,-.2,-1) ; 8
+addScreenPosition(-.01,-.2,-1) ; 9 - End Custom Deck Slots
+addScreenPosition(.25,.33,-1) ; Casual
+addScreenPosition(.37,.33,-1) ; Ranked
+addScreenPosition(.38,0,-1) ; Hero Ability
+addScreenPosition(.3,-.08,-1) ; Hero Experience
+addScreenPosition(-.29,-.44,??) ; > ?? Basic Decks
+; addScreenPosition(.3,-.33,??) ; > ?? PLAY - currently disabled
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
+addFooter()
 completeScreen()
 
 ; 3 SOLO
+addScreenPosition(.3,.33,-1) ; Slots for Practice/Naxx/Other Adventures
+addScreenPosition(.3,.26,-1) ; 
+addScreenPosition(.3,.2,-1) ; 
+addScreenPosition(.3,.17,-1) ; 
+addScreenPosition(.3,.11,-1) ; 
+addScreenPosition(.3,.06,-1) ; End slots for Adventures
+addScreenPosition(.3,-.33,??) ; >> ?? CHOOSE
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
+addFooter()
 completeScreen()
 
 ; 4 ARENA
+; will implement later
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
 completeScreen()
 
 ; 5 SHOP
+; will implement later...probably last
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
 completeScreen()
 
 ; 6 QUEST LOG
+addScreenPosition(-.21,.29,-1) ; Play Mode Wins
+addScreenPosition(.21,.29,-1) ; Best Arena Key
+addScreenPosition(-.16,.1,-1) ; Hero Levels
+addScreenPosition(0,.1,-1) ; 
+addScreenPosition(.16,.1,-1) ; 
+addScreenPosition(-.16,.01,-1) ; 
+addScreenPosition(0,.01,-1) ; 
+addScreenPosition(.16,.01,-1) ; 
+addScreenPosition(-.16,-.1,-1) ; 
+addScreenPosition(0,-.1,-1) ; 
+addScreenPosition(.16,-.1,-1) ; End Hero Levels
+addScreenPosition(-.11,-.25,-1) ; Dismiss Quest 1
+addScreenPosition(.06,-.25,-1) ; Dismiss Quest 2
+addScreenPosition(.23,-.25,-1) ; Dismiss Quest 3
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
 completeScreen()
 
 ; 7 0PEN PACKS
+; will implement later
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
 completeScreen()
 
 ; 8 MY COLLECTION
+; will implement later
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
 completeScreen()
 
 ; 9 FRIENDS
 ; problem: the back button won't always go back to MAIN MENU
-; try to find a way to dynamically add the "footer" links to each screen
-; maybe add it as an argument of completeScreen()
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
 completeScreen()
 
 ; 10 GAME MENU
+addScreenPosition(0,0,??) ; > OPTIONS
+addScreenPosition(0,0,??) ; > QUIT
+addScreenPosition(0,0,??) ; > RESUME
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
 completeScreen()
 

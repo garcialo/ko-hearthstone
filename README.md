@@ -15,8 +15,8 @@ An attempt to make Hearthstone playable with keyboard only.
 ---
 
 ### Running
-1 Download/install all prerequisites
-2 Run ko-hearthstone.ahk
+1. Download/install all prerequisites
+2. Run ko-hearthstone.ahk
 
 ---
 

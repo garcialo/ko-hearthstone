@@ -24,8 +24,8 @@ An attempt to make Hearthstone playable with keyboard only.
 * Tab: Next item
 * Shift+Tab: Previous item
 * Space or Enter: Activate Item
-* Shift+Space or Shift+Enter: Grab/release card
 * q: Exit
+
 ---
 
 ## Special Thanks

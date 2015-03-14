@@ -55,10 +55,10 @@ addScreenPosition(0,0,1) ; > 1 MAIN MENU
 completeScreen()
 
 ; 1 MAIN MENU
-addScreenPosition(0,.16,2) ; > 2 PLAY`
+; addScreenPosition(0,.16,2) ; > 2 PLAY`
 addScreenPosition(0,.10,3) ; > 3 SOLO
-addScreenPosition(0,.03,4) ; > 4 ARENA
-addScreenPosition(-.42,-.4,5) ; > 5 SHOP
+; addScreenPosition(0,.03,4) ; > 4 ARENA
+; addScreenPosition(-.42,-.4,5) ; > 5 SHOP
 addScreenPosition(-.29,-.4,6) ; > 6 QUEST LOG
 addScreenPosition(-.13,-.36,7) ; > 7 OPEN PACKS
 addScreenPosition(.07,-.36,8) ; > 8 MY COLLECTION
@@ -79,7 +79,7 @@ addScreenPosition(.25,.33,-1) ; Casual
 addScreenPosition(.37,.33,-1) ; Ranked
 addScreenPosition(.4,0,-1) ; Hero Ability
 addScreenPosition(.3,-.08,-1) ; Hero Experience
-addScreenPosition(-.29,-.44,11) ; > 11 Basic Decks - TESTESTESTEST
+addScreenPosition(-.29,-.44,11) ; > 11 Basic Decks
 ; addScreenPosition(.3,-.33,??) ; > ?? PLAY - currently disabled
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
 addFooter()
@@ -131,27 +131,50 @@ addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
 completeScreen()
 
 ; 8 MY COLLECTION
-addScreenPosition(-.45,.43,??) ; Class Cards
-addScreenPosition(-.4,.43,??) ;
-addScreenPosition(-.35,.43,??) ;
-addScreenPosition(-.30,.43,??) ;
-addScreenPosition(-.26,.43,??) ;
-addScreenPosition(-.21,.43,??) ;
-addScreenPosition(-.16,.43,??) ;
-addScreenPosition(-.11,.43,??) ;
-addScreenPosition(-.06,.43,??) ;
-addScreenPosition(-.01,.43,??) ; End Class Cards
-addScreenPosition(-.4,.15,??) ; Top 4
-addScreenPosition(-.2,.15,??) ;
-addScreenPosition(-.05,.15,??) ;
-addScreenPosition(.11,.15,??) ; End Top 4
-addScreenPosition(-.49,-.05,??) ; Go Left
-addScreenPosition(-.4,-.15,??) ; Bottom 4
-addScreenPosition(-.2,-.15,??) ;
-addScreenPosition(-.05,-.15,??) ;
-addScreenPosition(.11,-.15,??) ; End Bottom 4
-addScreenPosition(.22,-.05,??) ; Go Right
+addScreenPosition(-.45,.43,-1) ; Class Cards
+addScreenPosition(-.4,.43,-1) ;
+addScreenPosition(-.35,.43,-1) ;
+addScreenPosition(-.30,.43,-1) ;
+addScreenPosition(-.26,.43,-1) ;
+addScreenPosition(-.21,.43,-1) ;
+addScreenPosition(-.16,.43,-1) ;
+addScreenPosition(-.11,.43,-1) ;
+addScreenPosition(-.06,.43,-1) ;
+addScreenPosition(-.01,.43,-1) ; End Class Cards
+addScreenPosition(.18,.44,??) ; Crafting Mode
+addScreenPosition(-.4,.15,-1) ; Top 4
+addScreenPosition(-.2,.15,-1) ;
+addScreenPosition(-.05,.15,-1) ;
+addScreenPosition(.11,.15,-1) ; End Top 4
+addScreenPosition(-.49,-.05,-1) ; Go Left
+addScreenPosition(-.4,-.15,-1) ; Bottom 4
+addScreenPosition(-.2,-.15,-1) ;
+addScreenPosition(-.05,-.15,-1) ;
+addScreenPosition(.11,-.15,-1) ; End Bottom 4
+addScreenPosition(.22,-.05,-1) ; Go Right
+addScreenPosition(-.44,-.44,-1) ; Mana Cost All
+addScreenPosition(-.38,-.44,-1) ;
+addScreenPosition(-.35,-.44,-1) ;
+addScreenPosition(-.32,-.44,-1) ;
+addScreenPosition(-.29,-.44,-1) ;
+addScreenPosition(-.25,-.44,-1) ;
+addScreenPosition(-.22,-.44,-1) ;
+addScreenPosition(-.19,-.44,-1) ;
+addScreenPosition(-.16,-.44,-1) ; 7 Plus
+addScreenPosition(-.01,-.44,-1) ; Search
+addScreenPosition(.07,-.44,-1) ; Close Search
+addScreenPosition(.22,-.44,??) ; All Sets
+addScreenPosition(.37,.35,??) ; Deck Slots
+addScreenPosition(.37,.26,??) ;
+addScreenPosition(.37,.17,??) ;
+addScreenPosition(.37,.08,??) ;
+addScreenPosition(.37,-.01,??) ;
+addScreenPosition(.37,-.1,??) ;
+addScreenPosition(.37,-.19,??) ;
+addScreenPosition(.37,-.28,??) ;
+addScreenPosition(.37,-.37,??) ; End Deck Slots
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
+addFooter()
 completeScreen()
 
 ; 9 FRIENDS

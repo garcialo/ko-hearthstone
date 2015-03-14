@@ -65,7 +65,7 @@ addScreenPosition(.07,-.36,8) ; > 8 MY COLLECTION
 addFooter()
 completeScreen()
 
-; 2 PLAY
+; 2 PLAY - CUSTOM DECKS
 addScreenPosition(-.33,.2,-1) ; Custom Deck Slots 1
 addScreenPosition(-.16,.2,-1) ; 2
 addScreenPosition(-.01,.2,-1) ; 3
@@ -77,9 +77,9 @@ addScreenPosition(-.16,-.2,-1) ; 8
 addScreenPosition(-.01,-.2,-1) ; 9 - End Custom Deck Slots
 addScreenPosition(.25,.33,-1) ; Casual
 addScreenPosition(.37,.33,-1) ; Ranked
-addScreenPosition(.38,0,-1) ; Hero Ability
+addScreenPosition(.4,0,-1) ; Hero Ability
 addScreenPosition(.3,-.08,-1) ; Hero Experience
-addScreenPosition(-.29,-.44,??) ; > ?? Basic Decks
+addScreenPosition(-.29,-.44,11) ; > 11 Basic Decks - TESTESTESTEST
 ; addScreenPosition(.3,-.33,??) ; > ?? PLAY - currently disabled
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
 addFooter()
@@ -131,7 +131,26 @@ addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
 completeScreen()
 
 ; 8 MY COLLECTION
-; will implement later
+addScreenPosition(-.45,.43,??) ; Class Cards
+addScreenPosition(-.4,.43,??) ;
+addScreenPosition(-.35,.43,??) ;
+addScreenPosition(-.30,.43,??) ;
+addScreenPosition(-.26,.43,??) ;
+addScreenPosition(-.21,.43,??) ;
+addScreenPosition(-.16,.43,??) ;
+addScreenPosition(-.11,.43,??) ;
+addScreenPosition(-.06,.43,??) ;
+addScreenPosition(-.01,.43,??) ; End Class Cards
+addScreenPosition(-.4,.15,??) ; Top 4
+addScreenPosition(-.2,.15,??) ;
+addScreenPosition(-.05,.15,??) ;
+addScreenPosition(.11,.15,??) ; End Top 4
+addScreenPosition(-.49,-.05,??) ; Go Left
+addScreenPosition(-.4,-.15,??) ; Bottom 4
+addScreenPosition(-.2,-.15,??) ;
+addScreenPosition(-.05,-.15,??) ;
+addScreenPosition(.11,-.15,??) ; End Bottom 4
+addScreenPosition(.22,-.05,??) ; Go Right
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
 completeScreen()
 
@@ -145,6 +164,26 @@ addScreenPosition(0,0,??) ; > OPTIONS
 addScreenPosition(0,0,??) ; > QUIT
 addScreenPosition(0,0,??) ; > RESUME
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
+completeScreen()
+
+; 11 PLAY - BASIC DECKS
+addScreenPosition(-.33,.2,-1) ; Basic Deck Slots 1
+addScreenPosition(-.16,.2,-1) ; 2
+addScreenPosition(-.01,.2,-1) ; 3
+addScreenPosition(-.33,0,-1) ; 4
+addScreenPosition(-.16,0,-1) ; 5
+addScreenPosition(-.01,0,-1) ; 6
+addScreenPosition(-.33,-.2,-1) ; 7
+addScreenPosition(-.16,-.2,-1) ; 8
+addScreenPosition(-.01,-.2,-1) ; 9 - End Basic Deck Slots
+addScreenPosition(.25,.33,-1) ; Casual
+addScreenPosition(.37,.33,-1) ; Ranked
+addScreenPosition(.4,0,-1) ; Hero Ability
+addScreenPosition(.3,-.08,-1) ; Hero Experience
+addScreenPosition(-.05,-.44,2) ; > 2 Custom Decks
+; addScreenPosition(.3,-.33,??) ; > ?? PLAY - currently disabled
+addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
+addFooter()
 completeScreen()
 
 ; Initialize user environment
@@ -198,6 +237,25 @@ if (target%currScreen%_%currScreenPosition% > -1)
 	MoveMouse()
 }
 return
+
++Space::
++Enter::
+Send {Click, right}
+sleep 50
+return
+
+; wondering if I should put in some mouse-nudge buttons in here
+; {Up}::
+;  return
+
+; {Down}::
+; return
+
+; {Left}::
+; return
+
+; {Right}::
+; return
 
 ; FUNCTIONS
 ; FUNCTIONS

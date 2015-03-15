@@ -22,6 +22,7 @@
 ; 0 - Today's  Quests
 ; 1 - MAIN MENU
 ; 2 - SOLO
+; 3 - PRACTICE CUSTOM DECKS
 
 ; 0 - Today's Quests
 addScreenPosition(0,0,1) ; > 1 MAIN MENU
@@ -30,7 +31,7 @@ completeScreen()
 
 ; 1 MAIN MENU
 addScreenPosition(0,.16,??) ; PLAY
-addScreenPosition(0,.10,2) ; PRACTICE
+addScreenPosition(0,.10,2) ; SOLO
 addScreenPosition(0,.03,??) ; ARENA
 addScreenPosition(-.42,-.4,??) ; SHOP
 addScreenPosition(-.29,-.4,??) ; QUEST LOG
@@ -64,8 +65,8 @@ addScreenPosition(.3,-.33,??) ; PLAY
 addScreenPosition(.44,-0.45,2) ; BACK
 completeScreen()
 
-; EXPERIMENTAL
-; EXPERIMENTAL
+; INCOMPLETE
+; INCOMPLETE
 
 ; 2 PLAY - CUSTOM DECKS
 addScreenPosition(-.33,.2,-1) ; Custom Deck Slots 1

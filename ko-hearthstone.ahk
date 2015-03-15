@@ -209,22 +209,23 @@ MoveMouse()
 	MouseMove, x, y
 }
 
-ManualMove(xOff,yOff)
+MoveClick(xOff,yOff)
 {
 	global
 	local x := zeroX + minWidth * xOff
 	local y := zeroY - adjHeight * yOff
 	
 	MouseMove x,y
+	Send {Click}
+	sleep 50
 }
 
 screenProcess(targetScreenNum)
 {
 	global
 	; display ToolTip
-	message := "ko-hearthstone is working..."
 
-	ToolTip, %message%, zeroX, zeroY
+	ToolTip, ko-hearthstone is working..., zeroX, zeroY
 
 	; default loading time
 	loadingTime := 1000
@@ -241,22 +242,18 @@ screenProcess(targetScreenNum)
 		; Since we don't know which solo adventure is selected, put the screen into a known state
 		sleep 2500
 		; Mouse move to NAXXRAMAS and click
-		ManualMove(.3,.14)
-		Send {Click}
-		sleep 50
+		MoveClick(.3,.14)
 		
 		; Mouse move to PRACTICE and click
-		ManualMove(.3,.33)
-		Send {Click}
-		sleep 50
+		MoveClick(.3,.33)
 
 		; Mouse move to Normal and click
-		ManualMove(.3,.27)
-		Send {Click}
-		sleep 50
+		MoveClick(.3,.27)
+
 	}
 	else if (targetScreenNum = 3) PRACTICE CUSTOM DECKS
 	{
+		ToolTip, ko-hearthstone is CREATING A DECK, zeroX, zeroY
 		sleep 3000
 		; If no custom decks exist, the Custom/Basic decks arrows won't exist
 		; If this is the case, the colors ~should~ be the ones below for the spots below
@@ -273,31 +270,41 @@ screenProcess(targetScreenNum)
 		if (color1 = 0X45441E) and (color2 = 0X4A4946)
 		{
 			; Move to BACK and click
-			
+			MoveClick(.44,-.45)
+			sleep 750
 			; Move to BACK -already there- and click
-			
+			MoveClick(.44,-0.45)
+			sleep 1250
 			; Move to My Collection and click
-			
+			MoveClick(.07,-.36)
+			sleep 3250
 			; Move to NEW DECK and click
-			
+			MoveClick(.37,.35)
+			sleep 1250
 			; Move to HUNTER and click
-			
+			MoveClick(-.33,.2)
+			sleep 750
 			; Move to CHOOSE and click
-			
+			MoveClick(.3,-.33)
+			sleep 3250
 			; Move to DONE and click
-			
-			; Move to YES and click
-			
-			; wait
-			
+			MoveClick(.44,-0.45)
+			sleep 750
+			; Click Yes
+			MoveClick(-.08,-.11)
+			sleep 8000
 			; Move to DONE and click
-			
+			MoveClick(.44,-0.45)
+			sleep 2000
 			; Move to BACK -already there- and click
-			
+			MoveClick(.44,-0.45)
+			sleep 750
 			; Move to SOLO ADVENTURE and click
-			
+			MoveClick(0,.10`)
+			sleep 1250
 			; Move to CHOOSE and click
-			
+			MoveClick(.3,-.33)
+			sleep 750
 		}
 	}
 	else ; default
@@ -305,8 +312,8 @@ screenProcess(targetScreenNum)
 		; sleep for as long as it takes the screen to load
 		sleep loadingTime
 	}
+	; re-enable hotkeys
 	
-	; reenable hotkeys
 	Suspend, off
 	
 	; disable ToolTip

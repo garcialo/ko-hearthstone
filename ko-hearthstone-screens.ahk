@@ -1,17 +1,71 @@
+; Screens are created by adding all necessary positions using addScreenPosition()
+; and then completing the screen with completeScreen()
+;
+; addScreenPosition( X Offset, Y Offset, Target )
+; X and Y Offest assume that 0,0 is in the center of the playable area
+;
+; X Offsets range from
+; * -.5 -- left boundary of the playable area to
+; *  .5 -- right boundary of the playable area
+;
+; Y Offsets range from
+; * -.5 -- bottom of the playable area to
+; *  .5 -- top of the playable area
+;
+; Target should be one of the following values
+; -2 -- used to return to previous screen
+; -1 -- do nothing; used for selecting options that dont' take the user to another screen
+;  0 -- is not used; don't use it
+;    Note: Screen 0 is the splash screen; it's never reached again
+; Positive Numbers -- Index for all screens used in the game
+;
+; 0 - Today's  Quests
+; 1 - MAIN MENU
+; 2 - SOLO
+
 ; 0 - Today's Quests
 addScreenPosition(0,0,1) ; > 1 MAIN MENU
+addFooter()
 completeScreen()
 
 ; 1 MAIN MENU
-addScreenPosition(0,.16,2) ; > 2 PLAY`
-addScreenPosition(0,.10,3) ; > 3 SOLO
-addScreenPosition(0,.03,4) ; > 4 ARENA
-addScreenPosition(-.42,-.4,5) ; > 5 SHOP
-addScreenPosition(-.29,-.4,6) ; > 6 QUEST LOG
-addScreenPosition(-.13,-.36,7) ; > 7 OPEN PACKS
-addScreenPosition(.07,-.36,8) ; > 8 MY COLLECTION
-addFooter()
+addScreenPosition(0,.16,??) ; PLAY
+addScreenPosition(0,.10,2) ; PRACTICE
+addScreenPosition(0,.03,??) ; ARENA
+addScreenPosition(-.42,-.4,??) ; SHOP
+addScreenPosition(-.29,-.4,??) ; QUEST LOG
+addScreenPosition(-.13,-.36,??) ; OPEN PACKS
+addScreenPosition(.07,-.36,??) ; MY COLLECTION
 completeScreen()
+
+; 2 SOLO
+addScreenPosition(.3,.27,-1) ; Select Normal
+addScreenPosition(.3,.21,-1) ; Select Expert`
+addScreenPosition(.3,.14,??) ; NAXXRAMAS
+addScreenPosition(.3,-.33,3) ; CHOOSE
+addScreenPosition(.44,-0.45,1) ; BACK
+completeScreen()
+
+; 3 PRACTICE CUSTOM DECKS
+addScreenPosition(-.33,.2,-1) ; Basic Deck Slots 1
+addScreenPosition(-.16,.2,-1) ; 2
+addScreenPosition(-.01,.2,-1) ; 3
+addScreenPosition(-.33,0,-1) ; 4
+addScreenPosition(-.16,0,-1) ; 5
+addScreenPosition(-.01,0,-1) ; 6
+addScreenPosition(-.33,-.2,-1) ; 7
+addScreenPosition(-.16,-.2,-1) ; 8
+addScreenPosition(-.01,-.2,-1) ; 9 - End Basic Deck Slots
+addScreenPosition(.4,0,-1) ; Hero Ability
+addScreenPosition(.3,-.08,-1) ; Hero Experience
+addScreenPosition(-.05,-.44,??) ; Basic Decks
+addScreenPosition(-.29,-.44,13) ; > 13 Custom Decks ; added for testing
+addScreenPosition(.3,-.33,??) ; PLAY
+addScreenPosition(.44,-0.45,2) ; BACK
+completeScreen()
+
+; EXPERIMENTAL
+; EXPERIMENTAL
 
 ; 2 PLAY - CUSTOM DECKS
 addScreenPosition(-.33,.2,-1) ; Custom Deck Slots 1
@@ -30,19 +84,6 @@ addScreenPosition(.3,-.08,-1) ; Hero Experience
 addScreenPosition(-.29,-.44,11) ; > 11 Basic Decks
 ; addScreenPosition(.3,-.33,??) ; > ?? PLAY - currently disabled
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
-addFooter()
-completeScreen()
-
-; 3 SOLO
-addScreenPosition(.3,.33,-1) ; Slots for Practice/Naxx/Other Adventures
-addScreenPosition(.3,.26,-1) ; 
-addScreenPosition(.3,.2,-1) ; 
-addScreenPosition(.3,.17,-1) ; 
-addScreenPosition(.3,.11,-1) ; 
-addScreenPosition(.3,.06,-1) ; End slots for Adventures
-addScreenPosition(.3,-.33,12) ; >> 12 CHOOSE
-addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
-addFooter()
 completeScreen()
 
 ; 4 ARENA
@@ -122,7 +163,6 @@ addScreenPosition(.37,-.19,??) ;
 addScreenPosition(.37,-.28,??) ;
 addScreenPosition(.37,-.37,??) ; End Deck Slots
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
-addFooter()
 completeScreen()
 
 ; 9 FRIENDS
@@ -154,7 +194,6 @@ addScreenPosition(.3,-.08,-1) ; Hero Experience
 addScreenPosition(-.05,-.44,2) ; > 2 Custom Decks
 ; addScreenPosition(.3,-.33,??) ; > ?? PLAY - currently disabled
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
-addFooter()
 completeScreen()
 
 ; 12 SOLO > CHOOSE
@@ -172,26 +211,9 @@ addScreenPosition(.3,-.08,-1) ; Hero Experience
 addScreenPosition(-.29,-.44,13) ; > 13 Custom Decks
 addScreenPosition(.3,-.33,14) ; > 14 CHOOSE
 addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
-addFooter()
 completeScreen()
 
-; 13 SOLO - CUSTOM DECKS
-addScreenPosition(-.33,.2,-1) ; Basic Deck Slots 1
-addScreenPosition(-.16,.2,-1) ; 2
-addScreenPosition(-.01,.2,-1) ; 3
-addScreenPosition(-.33,0,-1) ; 4
-addScreenPosition(-.16,0,-1) ; 5
-addScreenPosition(-.01,0,-1) ; 6
-addScreenPosition(-.33,-.2,-1) ; 7
-addScreenPosition(-.16,-.2,-1) ; 8
-addScreenPosition(-.01,-.2,-1) ; 9 - End Basic Deck Slots
-addScreenPosition(.4,0,-1) ; Hero Ability
-addScreenPosition(.3,-.08,-1) ; Hero Experience
-addScreenPosition(-.05,-.44,12) ; > 2 Basic Decks
-addScreenPosition(.3,-.33,14) ; > 14 PLAY
-addScreenPosition(.44,-0.45,1) ; BACK > 1 MAIN MENU
-addFooter()
-completeScreen()
+
 
 ; 14 SOLO - CHOOSE OPPONENT
 addScreenPosition(-.33,.2,-1) ; Deck Slots 1
@@ -213,5 +235,4 @@ addScreenPosition(.37,-.19,??) ;
 addScreenPosition(.37,-.28,??) ;
 addScreenPosition(.37,-.37,??) ; End Opponent Slots
 addScreenPosition(-.05,-.44,??) ; > ?? Basic Decks Choose Opponent
-addFooter()
 completeScreen()

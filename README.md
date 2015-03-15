@@ -70,6 +70,11 @@ Donations are always welcome. =)
 ### To Done:
 #### v.03 - The Orcs are approaching!
 * Account for differences in position between fullscreen/windowed mode
+* Separated screen initialization from main script
+* Added track previous screen position tracking
+* Added "loading" functionality to prevent the user from getting ahead of ko-hearthstone
+* Added an assert function for asserting
+
 
 #### v.02 - Ready to Work
 A lot of stuff added.

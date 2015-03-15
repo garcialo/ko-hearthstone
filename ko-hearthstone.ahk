@@ -251,24 +251,32 @@ screenProcess(targetScreenNum)
 		MoveClick(.3,.27)
 
 	}
-	else if (targetScreenNum = 3) PRACTICE CUSTOM DECKS
+	else if (targetScreenNum = 3) ; PRACTICE CUSTOM DECKS
 	{
-		ToolTip, ko-hearthstone is CREATING A DECK, zeroX, zeroY
 		sleep 3000
-		; If no custom decks exist, the Custom/Basic decks arrows won't exist
+		; If no custom decks exist, the left arrow to "Basic Decks" won't exist
 		; If this is the case, the colors ~should~ be the ones below for the spots below
 		; So...if there isn't a custom deck...ko-hearthstone will create one with some help from Blizzard
 		; might want to also include this in the 'install' script so that the user won't have to go through
 		; this again unless they purposefully delete all the custom decks
 
-		x := zeroX + minWidth * -.05
-		y := zeroY - adjHeight * .33
-		PixelGetColor, color1, x, y, slow, rgb
-		x := zeroX + minWidth * -.29
-		y := zeroY - adjHeight * -.44
-		PixelGetColor, color2, x, y, slow, rgb
-		if (color1 = 0X45441E) and (color2 = 0X4A4946)
+		noButton := false
+		
+		x1 := zeroX + minWidth * -.3
+		y1 := zeroY - adjHeight * -.42
+		x2 := zeroX + minWidth * -.28
+		y2 := zeroY - adjHeight * -.45
+		
+		PixelSearch,,, x1,y1,x2,y2, 0x474A4A,0,Fast
+		if not ErrorLevel
 		{
+			noButton := true
+		}
+
+		if (noButton)
+		{
+			ToolTip, ko-hearthstone is CREATING A DECK, zeroX, zeroY
+			
 			; Move to BACK and click
 			MoveClick(.44,-.45)
 			sleep 750

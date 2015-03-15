@@ -48,7 +48,7 @@ addScreenPosition(.44,-0.45,1) ; BACK
 completeScreen()
 
 ; 3 PRACTICE CUSTOM DECKS
-addScreenPosition(-.33,.2,-1) ; Basic Deck Slots 1
+addScreenPosition(-.33,.2,-1) ; Custom Deck Slots 1
 addScreenPosition(-.16,.2,-1) ; 2
 addScreenPosition(-.01,.2,-1) ; 3
 addScreenPosition(-.33,0,-1) ; 4
@@ -56,11 +56,10 @@ addScreenPosition(-.16,0,-1) ; 5
 addScreenPosition(-.01,0,-1) ; 6
 addScreenPosition(-.33,-.2,-1) ; 7
 addScreenPosition(-.16,-.2,-1) ; 8
-addScreenPosition(-.01,-.2,-1) ; 9 - End Basic Deck Slots
+addScreenPosition(-.01,-.2,-1) ; 9 - End Custom Deck Slots
+addScreenPosition(-.29,-.44,??) ; Basic Decks
 addScreenPosition(.4,0,-1) ; Hero Ability
 addScreenPosition(.3,-.08,-1) ; Hero Experience
-addScreenPosition(-.05,-.44,??) ; Basic Decks
-addScreenPosition(-.29,-.44,13) ; > 13 Custom Decks ; added for testing
 addScreenPosition(.3,-.33,??) ; PLAY
 addScreenPosition(.44,-0.45,2) ; BACK
 completeScreen()

@@ -41,8 +41,11 @@ The following individuals have helped me indirectly or directly in the developme
 ## Progress
 
 ### Donate!
+
 [![Donate via PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=QGZEM4MF9P6NU&lc=US&item_name=KO%2dHearthstone&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted)
+
 Donations are always welcome. =)
+
 ---
 
 ### Blockers:

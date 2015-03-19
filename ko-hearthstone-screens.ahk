@@ -26,7 +26,6 @@
 
 ; 0 - Today's Quests
 addScreenPosition(0,0,1) ; > 1 MAIN MENU
-addFooter()
 completeScreen()
 
 ; 1 MAIN MENU
@@ -57,11 +56,119 @@ addScreenPosition(-.01,0,-1) ; 6
 addScreenPosition(-.33,-.2,-1) ; 7
 addScreenPosition(-.16,-.2,-1) ; 8
 addScreenPosition(-.01,-.2,-1) ; 9 - End Custom Deck Slots
-addScreenPosition(-.29,-.44,??) ; Basic Decks
+addScreenPosition(-.29,-.44,4) ; Basic Decks
 addScreenPosition(.4,0,-1) ; Hero Ability
 addScreenPosition(.3,-.08,-1) ; Hero Experience
-addScreenPosition(.3,-.33,??) ; PLAY
+addScreenPosition(.3,-.33,6) ; CHOOSE
 addScreenPosition(.44,-0.45,2) ; BACK
+completeScreen()
+
+; 4 PRACTICE BASIC DECKS
+addScreenPosition(-.33,.2,-1) ; Basic Deck Slots 1
+addScreenPosition(-.16,.2,-1) ; 2
+addScreenPosition(-.01,.2,-1) ; 3
+addScreenPosition(-.33,0,-1) ; 4
+addScreenPosition(-.16,0,-1) ; 5
+addScreenPosition(-.01,0,-1) ; 6
+addScreenPosition(-.33,-.2,-1) ; 7
+addScreenPosition(-.16,-.2,-1) ; 8
+addScreenPosition(-.01,-.2,-1) ; 9 - End Basic Deck Slots
+addScreenPosition(-.05,-.44,3) ; Custom Decks
+addScreenPosition(.4,0,-1) ; Hero Ability
+addScreenPosition(.3,-.08,-1) ; Hero Experience
+addScreenPosition(.3,-.33,5) ; CHOOSE
+addScreenPosition(.44,-0.45,2) ; BACK
+completeScreen()
+
+; 5 PRACTICE BASIC DECKS CHOOSE OPPONENT
+addScreenPosition(.37,.36,-1) ; Opponent Slots 1
+addScreenPosition(.37,.30,-1) ; 2
+addScreenPosition(.37,.24,-1) ; 3
+addScreenPosition(.37,.17,-1) ; 4
+addScreenPosition(.37,.11,-1) ; 5
+addScreenPosition(.37,.05,-1) ; 6
+addScreenPosition(.37,-.01,-1) ; 7
+addScreenPosition(.37,-.07,-1) ; 8
+addScreenPosition(.37,-.13,-1) ; 9 - End Opponent Slots
+addScreenPosition(.3,-.33,7) ; PLAY
+addScreenPosition(.44,-0.45,4) ; BACK
+addScreenPosition(-.33,.2,-1) ; Basic Deck Slots 1
+addScreenPosition(-.16,.2,-1) ; 2
+addScreenPosition(-.01,.2,-1) ; 3
+addScreenPosition(-.33,0,-1) ; 4
+addScreenPosition(-.16,0,-1) ; 5
+addScreenPosition(-.01,0,-1) ; 6
+addScreenPosition(-.33,-.2,-1) ; 7
+addScreenPosition(-.16,-.2,-1) ; 8
+addScreenPosition(-.01,-.2,-1) ; 9 - End Basic Deck Slots
+addScreenPosition(-.05,-.44,6) ; Custom Decks Choose Opponent
+completeScreen()
+
+; 6 PRACTICE CUSTOM DECKS CHOOSE OPPONENT
+addScreenPosition(.37,.36,-1) ; Opponent Slots 1
+addScreenPosition(.37,.30,-1) ; 2
+addScreenPosition(.37,.24,-1) ; 3
+addScreenPosition(.37,.17,-1) ; 4
+addScreenPosition(.37,.11,-1) ; 5
+addScreenPosition(.37,.05,-1) ; 6
+addScreenPosition(.37,-.01,-1) ; 7
+addScreenPosition(.37,-.07,-1) ; 8
+addScreenPosition(.37,-.13,-1) ; 9 - End Opponent Slots
+addScreenPosition(.3,-.33,7) ; PLAY
+addScreenPosition(.44,-0.45,3) ; BACK
+addScreenPosition(-.33,.2,-1) ; Basic Deck Slots 1
+addScreenPosition(-.16,.2,-1) ; 2
+addScreenPosition(-.01,.2,-1) ; 3
+addScreenPosition(-.33,0,-1) ; 4
+addScreenPosition(-.16,0,-1) ; 5
+addScreenPosition(-.01,0,-1) ; 6
+addScreenPosition(-.33,-.2,-1) ; 7
+addScreenPosition(-.16,-.2,-1) ; 8
+addScreenPosition(-.01,-.2,-1) ; 9 - End Basic Deck Slots
+addScreenPosition(-.29,-.44,5) ; Basic Decks Choose Opponent
+completeScreen()
+
+; 7 STARTING HAND 3 CARDS
+addScreenPosition(-.24,0,-1) ; Starting Cards 1
+addScreenPosition(0,0,-1) ; 2
+addScreenPosition(.24,0,-1) ; 3 - End Starting Cards
+addScreenPosition(0,-.32,9) ; CONFIRM
+completeScreen()
+
+; 8 STARTING HAND 4 CARDS
+addScreenPosition(-.26,0,-1) ; Starting Cards 1
+addScreenPosition(-.09,0,-1) ; 2
+addScreenPosition(.09,0,-1) ; 3
+addScreenPosition(.26,0,-1) ; 4 - End Starting Cards
+addScreenPosition(0,-.32,9) ; CONFIRM
+completeScreen()
+
+; 9 GAME STATUS SCREEN
+addScreenPosition(0,.45,-1) ; Enemy Hand
+addScreenPosition(-.11,.27,-1) ; Enemy Weapon
+addScreenPosition(.11,.27,-1) ; Enemy Ability
+addScreenPosition(.47,.17,-1) ; Enemy Deck
+addScreenPosition(.47,-.11,-1) ; Player Deck
+addScreenPosition(-.45,.18,-1) ; Game History 1
+addScreenPosition(-.45,.14,-1) ; 2
+addScreenPosition(-.45,.11,-1) ; 3
+addScreenPosition(-.45,.09,-1) ; 4
+addScreenPosition(-.45,.06,-1) ; 5
+addScreenPosition(-.45,.02,-1) ; 6
+addScreenPosition(-.45,0,-1) ; 7
+addScreenPosition(-.45,-.02,-1) ; 8
+addScreenPosition(-.45,-.06,-1) ; 9
+addScreenPosition(-.45,-.09,-1) ; 10
+addScreenPosition(-.45,-.11,-1) ; 11
+addScreenPosition(-.45,-.14,-1) ; 12
+addScreenPosition(-.45,-.17,-1) ; 13 - End Game History
+completeScreen()
+
+; 10 GAME PLAY SCREEN
+addScreenPosition(0,.27,-1) ; Enemy Portrait
+addScreenPosition(-.11,-.27,-1) ; Player Weapon
+addScreenPosition(0,-.27,-1) ; Player Portrait
+addScreenPosition(.11,-.27,-1) ; Player Ability
 completeScreen()
 
 ; INCOMPLETE

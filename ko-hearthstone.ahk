@@ -372,9 +372,9 @@ screenProcess(targetScreenNum)
 
 		fourCards := false
 
-		x1 := zeroX + maxX * -.72
-		y1 := zeroY - maxY * .48
-		x2 := zeroX + maxX * -.68
+		x1 := zeroX + maxX * -.70
+		y1 := zeroY - maxY * .25
+		x2 := zeroX + maxX * -.66
 		y2 := zeroY - maxY * -.18
 
 		PixelSearch,,, x1,y1,x2,y2, 0x42FF65,0,Fast

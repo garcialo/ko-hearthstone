@@ -75,7 +75,7 @@ addScreenPosition(-.32,-.4,-1) ; 8
 addScreenPosition(-.02,-.4,-1) ; 9 - End Basic Deck Slots
 addScreenPosition(-.1,-.88,3) ; Custom Decks
 addScreenPosition(.8,0,-1) ; Hero Ability
-addScreenPosition(.4,-.16,-1) ; Hero Experience
+addScreenPosition(.6,-.16,-1) ; Hero Experience
 addScreenPosition(.6,-.66,5) ; CHOOSE
 addScreenPosition(.88,-0.9,2) ; BACK
 completeScreen()

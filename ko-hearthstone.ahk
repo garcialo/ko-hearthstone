@@ -1,3 +1,5 @@
+#Include isFullscreen.ahk ; isFullscreen() function
+
 debug = true
 
 ; WinHide ahk_class Shell_TrayWnd
@@ -6,41 +8,59 @@ IfWinNotExist Hearthstone
 	launchGame()
 }
 
-; VARIABLES
-; VARIABLES
-; VARIABLES
+; SET UP SCREEN FOR POSITIONS
 
+; get width/height of current Window
 WinGetPos,,, width, height, Hearthstone
 
-; all the mouse positions will be described in relation to the center of the game window
-zeroX := width / 2
-zeroY := height / 2
-
-; Adjusting if in windowed mode
-SysGet, leftRightBorderSize, 32
-SysGet, topBottomBorderSize, 33
-SysGet, titleBarSize, 4
-
-; adjusted height/width reflect the play area without window borders
-adjWidth := width - leftRightBorderSize * 2
-adjHeight := height - titleBarSize - topBottomBorderSize * 2
-
+; checking if fullscreen or not
 fullscreen := false
-if (height = adjHeight) && (width = adjWidth)
+if (isFullscreen(Hearthstone))
 {
 	fullscreen := true
 }
 
-; if windowed, adjust zeroY so it's consistent between windowed/fullscreen
-if (not fullscreen)
+playHeight := 0
+playWidth := 0
+
+; zeroX is half screen width ; if bordered, the border sizes cancel out
+zeroX := width / 2
+
+if (fullscreen)
 {
-	zeroY := zeroY - (titleBarSize / 2)
+	; playHeight/Width equal to screen height/width
+	playHeight := height
+	playWidth := width
+	
+	; center is middle of the screen size
+	zeroY := height / 2
+}
+else
+{
+	; Getting border/titlebar sizes from the system settings
+	SysGet, leftRightBorderSize, 32
+	SysGet, topBottomBorderSize, 33
+	SysGet, titleBarSize, 4
+
+	; playHeight/Width reflect the play area without window borders/titlebar
+	playWidth := width - leftRightBorderSize * 2
+	playHeight := height - titleBarSize - topBottomBorderSize * 2
+
+	; zeroY is half window height; and lowered to account for size of title bar
+	zeroY := height / 2 - (titleBarSize / 2)
 }
 
+; any window area beyond minWidth is just padding
 ; the usable horizontal space is determined relative to the playscreen height
-; any window area beyond minWidth is just padding for all non-"footer" screen elements
-; maxFromCenter is the maximum distance that should be considered from the minimum width
-minWidth := Ceil(adjHeight * 1.332)
+minWidth := Ceil(playHeight * 1.332)
+
+; the maximum X distance from the center a position can be is half the minWidth
+; rounding up just because
+maxX := Ceil(minWidth / 2)
+
+; the maximum Y distance from the center a position can be is half the play area height
+; rounding up because of the reasons rounding up for maxX
+maxY := Ceil(playHeight / 2)
 
 ; Setting up Screens and Screen Mouse Positions
 currScreen := 0
@@ -181,14 +201,14 @@ addScreenPosition(x,y,targetScreen)
 addFooter()
 {
 	global
-	assert(minWidth <> 0, A_LineNumber)
-	local foff := -.47 * adjWidth / minWidth
-	local goff := .40 * adjWidth / minWidth
-	local moff := .48 * adjWidth / minWidth
+	assert(maxX <> 0, A_LineNumber)
+	local foff := -.94 * playWidth / maxX
+	local goff := .80 * playWidth / maxX
+	local moff := .94 * playWidth / maxX
 	
-	addScreenPosition(foff,-.5,??) ; FRIENDS
-	addScreenPosition(goff,-.5,-1) ; GOLD
-	addScreenPosition(moff,-.5,??) ; GAME MENU
+	addScreenPosition(foff,-.9,??) ; FRIENDS
+	addScreenPosition(goff,-.9,-1) ; GOLD
+	addScreenPosition(moff,-.9,??) ; GAME MENU
 }
 
 completeScreen()
@@ -203,8 +223,8 @@ completeScreen()
 MoveMouse()
 {
 	global
-	local x := zeroX+minWidth*screenX%currScreen%_%currScreenPosition%
-	local y := zeroY-adjHeight*screenY%currScreen%_%currScreenPosition%
+	local x := zeroX+maxX*screenX%currScreen%_%currScreenPosition%
+	local y := zeroY-maxY*screenY%currScreen%_%currScreenPosition%
 
 	MouseMove, x, y
 }
@@ -212,8 +232,8 @@ MoveMouse()
 MoveClick(xOff,yOff)
 {
 	global
-	local x := zeroX + minWidth * xOff
-	local y := zeroY - adjHeight * yOff
+	local x := zeroX + maxX * xOff
+	local y := zeroY - maxY * yOff
 	
 	MouseMove x,y
 	Send {Click}
@@ -242,13 +262,13 @@ screenProcess(targetScreenNum)
 		; Since we don't know which solo adventure is selected, put the screen into a known state
 		sleep 2500
 		; Mouse move to NAXXRAMAS and click
-		MoveClick(.3,.14)
+		MoveClick(.6,.28)
 		
 		; Mouse move to PRACTICE and click
-		MoveClick(.3,.33)
+		MoveClick(.6,.66)
 
 		; Mouse move to Normal and click
-		MoveClick(.3,.27)
+		MoveClick(.6,.54)
 
 	}
 	else if (targetScreenNum = 3) ; PRACTICE CUSTOM DECKS
@@ -262,10 +282,10 @@ screenProcess(targetScreenNum)
 
 		noButton := false
 		
-		x1 := zeroX + minWidth * -.3
-		y1 := zeroY - adjHeight * -.42
-		x2 := zeroX + minWidth * -.28
-		y2 := zeroY - adjHeight * -.45
+		x1 := zeroX + maxX * -.6
+		y1 := zeroY - maxY * -.84
+		x2 := zeroX + maxX * -.56
+		y2 := zeroY - maxY * -.9
 		
 		PixelSearch,,, x1,y1,x2,y2, 0x474A4A,0,Fast
 		if not ErrorLevel
@@ -278,40 +298,40 @@ screenProcess(targetScreenNum)
 			ToolTip, ko-hearthstone is CREATING A DECK, zeroX, zeroY
 			
 			; Move to BACK and click
-			MoveClick(.44,-.45)
+			MoveClick(.88,-.9)
 			sleep 750
 			; Move to BACK -already there- and click
-			MoveClick(.44,-0.45)
+			MoveClick(.88,-0.9)
 			sleep 1250
 			; Move to My Collection and click
-			MoveClick(.07,-.36)
+			MoveClick(.14,-.72)
 			sleep 3250
 			; Move to NEW DECK and click
-			MoveClick(.37,.35)
+			MoveClick(.74,.7)
 			sleep 1250
 			; Move to HUNTER and click
-			MoveClick(-.33,.2)
+			MoveClick(-.66,.4)
 			sleep 750
 			; Move to CHOOSE and click
-			MoveClick(.3,-.33)
+			MoveClick(.6,-.66)
 			sleep 3250
 			; Move to DONE and click
-			MoveClick(.44,-0.45)
+			MoveClick(.88,-0.9)
 			sleep 750
 			; Click Yes
-			MoveClick(-.08,-.11)
+			MoveClick(-.16,-.22)
 			sleep 8000
 			; Move to DONE and click
-			MoveClick(.44,-0.45)
+			MoveClick(.88,-0.9)
 			sleep 2000
 			; Move to BACK -already there- and click
-			MoveClick(.44,-0.45)
+			MoveClick(.88,-0.9)
 			sleep 750
 			; Move to SOLO ADVENTURE and click
-			MoveClick(0,.10`)
+			MoveClick(0,.2)
 			sleep 1250
 			; Move to CHOOSE and click
-			MoveClick(.3,-.33)
+			MoveClick(.6,-.66)
 			sleep 750
 		}
 	}

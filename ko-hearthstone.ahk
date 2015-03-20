@@ -363,7 +363,7 @@ screenProcess(targetScreenNum)
 	}
 	else if (targetScreenNum = 5 or targetScreenNum = 6) ; PRACTICE BASIC DECK CHOOSE OPPONENT
 	{
-		MoveClick(.37,.36)
+		MoveClick(.74,.72)
 	}
 	else if (targetScreenNum = 7)
 	{
@@ -372,20 +372,11 @@ screenProcess(targetScreenNum)
 
 		fourCards := false
 
-		x1 := zeroX + minWidth * -.36
-		y1 := zeroY - playHeight * .12
-		x2 := zeroX + minWidth * -.34
-		y2 := zeroY - playHeight * -.09
+		x1 := zeroX + maxX * -.72
+		y1 := zeroY - maxY * .48
+		x2 := zeroX + maxX * -.68
+		y2 := zeroY - maxY * -.18
 
-		while (i < 10)
-		{
-		MouseMove x1,y1
-		MouseMove x2,y1
-		MouseMove x2,y2
-		MouseMove x1,y2
-		i += 1
-		}
-		MouseMove 0,0
 		PixelSearch,,, x1,y1,x2,y2, 0x42FF65,0,Fast
 		if not ErrorLevel
 		{

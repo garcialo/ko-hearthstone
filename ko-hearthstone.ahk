@@ -117,12 +117,8 @@ sleep 50
 if (target%currScreen%_%currScreenPosition% > -1)
 {
 	prevPos%currScreen% := currScreenPosition
-	
 	currScreen := target%currScreen%_%currScreenPosition%
-	screenProcess(currScreen)
-	currScreenPosition := prevPos%currScreen%
-	
-	MoveMouse()
+	gotoScreen()
 }
 return
 
@@ -130,6 +126,21 @@ return
 +Enter::
 Send {Click, right}
 sleep 50
+return
+
+p::
+if (currScreen = 9)
+{
+	prevPos%currScreen% := currScreenPosition
+	currScreen := 10
+	gotoScreen()
+}
+else if ( currScreen = 10)
+{
+	prevPos%currScreen% := currScreenPosition
+	currScreen := 9
+	gotoScreen()
+}
 return
 
 ; wondering if I should put in some mouse-nudge buttons in here
@@ -220,6 +231,19 @@ completeScreen()
 	currScreenPosition := 0
 }
 
+gotoScreen()
+{
+	global
+	screenProcess(currScreen)
+	currScreenPosition := prevPos%currScreen%
+
+	MoveMouse()
+	if(debug)
+	{
+		ToolTip, FullscreenOn %fullscreen% Screen %currScreen% H %height% W %width% playH %playHeight% playW %playWidth% , 110,5
+	}
+}
+
 MoveMouse()
 {
 	global
@@ -261,15 +285,17 @@ screenProcess(targetScreenNum)
 	{
 		; Since we don't know which solo adventure is selected, put the screen into a known state
 		sleep 2500
+
 		; Mouse move to NAXXRAMAS and click
 		MoveClick(.6,.28)
 		
 		; Mouse move to PRACTICE and click
 		MoveClick(.6,.66)
+		;  Sleep while PRACTICE expands
+		sleep 34
 
 		; Mouse move to Normal and click
 		MoveClick(.6,.54)
-
 	}
 	else if (targetScreenNum = 3) ; PRACTICE CUSTOM DECKS
 	{
@@ -333,6 +359,42 @@ screenProcess(targetScreenNum)
 			; Move to CHOOSE and click
 			MoveClick(.6,-.66)
 			sleep 750
+		}
+	}
+	else if (targetScreenNum = 5 or targetScreenNum = 6) ; PRACTICE BASIC DECK CHOOSE OPPONENT
+	{
+		MoveClick(.37,.36)
+	}
+	else if (targetScreenNum = 7)
+	{
+		ToolTip, ko-hearthstone is waiting for the match to start, zeroX,zeroY
+		sleep 25000
+
+		fourCards := false
+
+		x1 := zeroX + minWidth * -.36
+		y1 := zeroY - playHeight * .12
+		x2 := zeroX + minWidth * -.34
+		y2 := zeroY - playHeight * -.09
+
+		while (i < 10)
+		{
+		MouseMove x1,y1
+		MouseMove x2,y1
+		MouseMove x2,y2
+		MouseMove x1,y2
+		i += 1
+		}
+		MouseMove 0,0
+		PixelSearch,,, x1,y1,x2,y2, 0x42FF65,0,Fast
+		if not ErrorLevel
+		{
+			fourCards := true
+		}
+
+		if(fourCards)
+		{
+			currScreen := 8 ; Screen 8 is the one with 4 cards
 		}
 	}
 	else ; default

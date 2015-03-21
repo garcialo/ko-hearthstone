@@ -47,7 +47,7 @@ else
 	playHeight := height - titleBarSize - topBottomBorderSize * 2
 
 	; zeroY is half window height; and lowered to account for size of title bar
-	zeroY := height / 2 - (titleBarSize / 2)
+	zeroY := titleBarSize + topBottomBorderSize + (playHeight / 2)
 }
 
 ; any window area beyond minWidth is just padding

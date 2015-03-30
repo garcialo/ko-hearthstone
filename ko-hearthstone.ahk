@@ -303,15 +303,15 @@ screenProcess(targetScreenNum)
 		sleep 2500
 
 		; Mouse move to NAXXRAMAS and click
-		MoveClick(.6,.28)
+		MoveClick(.6,.32)
 
 		; Mouse move to PRACTICE and click
-		MoveClick(.6,.66)
+		MoveClick(.6,.7)
 		;  Sleep while PRACTICE expands
 		sleep 34
 
 		; Mouse move to Normal and click
-		MoveClick(.6,.54)
+		MoveClick(.6,.58)
 	}
 	else if (targetScreenNum = 3) ; PRACTICE CUSTOM DECKS
 	{
@@ -381,7 +381,7 @@ screenProcess(targetScreenNum)
 	{
 		MoveClick(.74,.72)
 	}
-	else if (targetScreenNum = 7)
+	else if (targetScreenNum = 7) ; STARTING HAND
 	{
 		ToolTip, ko-hearthstone is waiting for the match to start, zeroX,zeroY
 		sleep 25000

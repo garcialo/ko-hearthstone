@@ -29,13 +29,13 @@ addScreenPosition(0,0,1) ; > 1 MAIN MENU
 completeScreen()
 
 ; 1 MAIN MENU
-addScreenPosition(0,.32,??) ; PLAY
-addScreenPosition(0,.2,2) ; SOLO
-addScreenPosition(0,.06,??) ; ARENA
-addScreenPosition(-.84,-.8,??) ; SHOP
-addScreenPosition(-.58,-.8,??) ; QUEST LOG
-addScreenPosition(-.26,-.72,??) ; OPEN PACKS
-addScreenPosition(.14,-.72,??) ; MY COLLECTION
+addScreenPosition(0,.38,??) ; PLAY
+addScreenPosition(0,.25,2) ; SOLO
+addScreenPosition(0,.1,??) ; ARENA
+addScreenPosition(-.84,-.73,??) ; SHOP
+addScreenPosition(-.58,-.73,??) ; QUEST LOG
+addScreenPosition(-.26,-.69,??) ; OPEN PACKS
+addScreenPosition(.14,-.69,??) ; MY COLLECTION
 completeScreen()
 
 ; 2 SOLO

@@ -49,7 +49,7 @@ Donations are always welcome. =)
 ---
 
 ### Blockers:
-* Time to work on this
+* Not quite working right between fullscreen/windowed
 
 ---
 
@@ -76,7 +76,7 @@ Donations are always welcome. =)
 * Added track previous screen position tracking
 * Added "loading" functionality to prevent the user from getting ahead of ko-hearthstone
 * Added an assert function for asserting
-
+* Implemented "toggle" system for gameplay
 
 #### v.02 - Ready to Work
 A lot of stuff added.

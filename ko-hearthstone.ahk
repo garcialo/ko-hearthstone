@@ -1,6 +1,11 @@
 #Include isFullscreen.ahk ; isFullscreen() function
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 debug = true
+logging = true
+
+FormatTime,timestamp
+kolog(timestamp)
 
 ; WinHide ahk_class Shell_TrayWnd
 IfWinNotExist Hearthstone
@@ -10,7 +15,7 @@ IfWinNotExist Hearthstone
 
 ; SET UP SCREEN FOR POSITIONS
 
-; get width/height of current Window
+; get width/height of Hearthstone Window
 WinGetPos,,, width, height, Hearthstone
 
 ; checking if fullscreen or not
@@ -55,12 +60,15 @@ else
 minWidth := Ceil(playHeight * 1.332)
 
 ; the maximum X distance from the center a position can be is half the minWidth
-; rounding up just because
-maxX := Ceil(minWidth / 2)
+; rounding down because rounding up seemed to be (slightly) less accurate in practice
+maxX := Floor(minWidth / 2)
 
 ; the maximum Y distance from the center a position can be is half the play area height
-; rounding up because of the reasons rounding up for maxX
-maxY := Ceil(playHeight / 2)
+; rounding down because of the reasons rounding down for maxX
+maxY := Floor(playHeight / 2)
+
+; logging final variables for use
+kolog("Fullscreen: " fullscreen "`nWidth/Height: " width " x " height "`nPlayW/PlayH: " playWidth " x " playHeight "`nZeroX/ZeroY: " zeroX " x " zeroY "`nMaxX/MaxY: " maxX " x " maxY)
 
 ; Setting up Screens and Screen Mouse Positions
 currScreen := 0
@@ -193,6 +201,9 @@ launchGame()
 
 closeGame()
 {
+	FormatTime,timestamp
+	kolog(timestamp)
+	kolog("Closing Hearthstone`n")
 	WinKill Hearthstone
 	WinKill Battle.net
 	; WinShow ahk_class Shell_TrayWnd
@@ -247,8 +258,13 @@ gotoScreen()
 MoveMouse()
 {
 	global
-	local x := zeroX+maxX*screenX%currScreen%_%currScreenPosition%
-	local y := zeroY-maxY*screenY%currScreen%_%currScreenPosition%
+	; xOff = horizontal offset in pixels
+	local xOff := maxX * screenX%currScreen%_%currScreenPosition%
+	local x := zeroX + xOff
+	
+	; xOff = vertical offset in pixels
+	local yOff := maxY * screenY%currScreen%_%currScreenPosition%
+	local y := zeroY - yOff
 
 	MouseMove, x, y
 }
@@ -288,7 +304,7 @@ screenProcess(targetScreenNum)
 
 		; Mouse move to NAXXRAMAS and click
 		MoveClick(.6,.28)
-		
+
 		; Mouse move to PRACTICE and click
 		MoveClick(.6,.66)
 		;  Sleep while PRACTICE expands
@@ -307,12 +323,12 @@ screenProcess(targetScreenNum)
 		; this again unless they purposefully delete all the custom decks
 
 		noButton := false
-		
+
 		x1 := zeroX + maxX * -.6
 		y1 := zeroY - maxY * -.84
 		x2 := zeroX + maxX * -.56
 		y2 := zeroY - maxY * -.9
-		
+
 		PixelSearch,,, x1,y1,x2,y2, 0x474A4A,0,Fast
 		if not ErrorLevel
 		{
@@ -410,5 +426,18 @@ assert(condition, lineNumber)
 	{
 		MsgBox Assert Hit at %lineNumber%
 		ExitApp
+	}
+}
+
+kolog(addToLog)
+{
+	global
+	if (logging)
+	{
+		FileAppend, %addToLog%`n, koh.log
+		If ErrorLevel
+		{
+			MsgBox ERROR!
+		}
 	}
 }

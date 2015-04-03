@@ -42,6 +42,7 @@ completeScreen()
 addScreenPosition(.6,.58,-1) ; Select Normal
 addScreenPosition(.6,.45,-1) ; Select Expert`
 addScreenPosition(.6,.32,??) ; NAXXRAMAS
+addScreenPosition(.6,.14,??) ; BLACKROCK
 addScreenPosition(.6,-.64,3) ; CHOOSE
 addScreenPosition(.88,-0.84,1) ; BACK
 completeScreen()
@@ -132,7 +133,7 @@ completeScreen()
 addScreenPosition(-.48,0,-1) ; Starting Cards 1
 addScreenPosition(0,0,-1) ; 2
 addScreenPosition(.48,0,-1) ; 3 - End Starting Cards
-addScreenPosition(0,-.64,9) ; CONFIRM
+addScreenPosition(.01,-.55,9) ; CONFIRM
 completeScreen()
 
 ; 8 STARTING HAND 4 CARDS
@@ -140,28 +141,28 @@ addScreenPosition(-.52,0,-1) ; Starting Cards 1
 addScreenPosition(-.18,0,-1) ; 2
 addScreenPosition(.18,0,-1) ; 3
 addScreenPosition(.52,0,-1) ; 4 - End Starting Cards
-addScreenPosition(0,-.64,9) ; CONFIRM
+addScreenPosition(.01,-.55,9) ; CONFIRM
 completeScreen()
 
 ; 9 GAME STATUS SCREEN
 addScreenPosition(0,.9,-1) ; Enemy Hand
 addScreenPosition(-.22,.54,-1) ; Enemy Weapon
 addScreenPosition(.22,.54,-1) ; Enemy Ability
-addScreenPosition(.94,.34,-1) ; Enemy Deck
-addScreenPosition(.94,-.22,-1) ; Player Deck
-addScreenPosition(-.9,.36,-1) ; Game History 1
-addScreenPosition(-.9,.28,-1) ; 2
-addScreenPosition(-.9,.22,-1) ; 3
-addScreenPosition(-.9,.18,-1) ; 4
-addScreenPosition(-.9,.12,-1) ; 5
-addScreenPosition(-.9,.04,-1) ; 6
-addScreenPosition(-.9,0,-1) ; 7
-addScreenPosition(-.9,-.04,-1) ; 8
-addScreenPosition(-.9,-.12,-1) ; 9
-addScreenPosition(-.9,-.18,-1) ; 10
-addScreenPosition(-.9,-.22,-1) ; 11
-addScreenPosition(-.9,-.28,-1) ; 12
-addScreenPosition(-.9,-.34,-1) ; 13 - End Game History
+addScreenPosition(.94,.41,-1) ; Enemy Deck
+addScreenPosition(.94,-.15,-1) ; Player Deck
+addScreenPosition(-.88,.39,-1) ; Game History 1
+addScreenPosition(-.88,.34,-1) ; 2
+addScreenPosition(-.88,.27,-1) ; 3
+addScreenPosition(-.88,.23,-1) ; 4
+addScreenPosition(-.88,.16,-1) ; 5
+addScreenPosition(-.88,.11,-1) ; 6
+addScreenPosition(-.88,.04,-1) ; 7
+addScreenPosition(-.88,-.02,-1) ; 8
+addScreenPosition(-.88,-.08,-1) ; 9
+addScreenPosition(-.88,-.14,-1) ; 10
+addScreenPosition(-.88,-.2,-1) ; 11
+addScreenPosition(-.88,-.25,-1) ; 12
+addScreenPosition(-.88,-.3,-1) ; 13 - End Game History
 completeScreen()
 
 ; 10 GAME PLAY SCREEN

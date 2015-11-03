@@ -380,8 +380,6 @@ gotoScreen()
 
 	screenProcess(currScreen)
 
-	verifyScreen(currScreen)
-
 	; re-enable hotkeys
 	Suspend, off
 

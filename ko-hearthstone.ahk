@@ -4,6 +4,11 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; global variables
 debug = true
 logging = true
+handSize = 0
+
+; globals used by checkHandSize
+pixelsAway := 2
+numShades := 1
 
 FormatTime,timestamp
 kolog(timestamp)
@@ -148,13 +153,25 @@ sleep 50
 return
 
 p::
-if (currScreen = 9)
+if (currScreen = 9) ; if GAME STATUS SCREEN, GO TO THE APPROPRIATE GAMEPLAY SCREEN
 {
 	prevPos%currScreen% := currScreenPosition
-	currScreen := 10
+	handSize := -1
+	checkHandSize()
+
+	if handSize < 0
+	{
+		askHandSize()
+	}
+	else
+	{
+		MsgBox Hand Size is %handSize%
+	}
+
+	currScreen := handSize + 10
 	gotoScreen()
 }
-else if ( currScreen = 10)
+else if (currScreen > 9 and currScreen < 20)
 {
 	prevPos%currScreen% := currScreenPosition
 	currScreen := 9
@@ -162,7 +179,88 @@ else if ( currScreen = 10)
 }
 return
 
-; wondering if I should put in some mouse-nudge buttons in here
+o::
+askHandSize()
+return
+
+`::
+if (currScreen > 8 and currScreen < 21)
+{
+	handSize := 0
+}
+return
+
+1::
+if (currScreen > 8 and currScreen < 21)
+{
+	handSize := 1
+}
+return
+
+2::
+if (currScreen > 8 and currScreen < 21)
+{
+	handSize := 2
+}
+return
+
+3::
+if (currScreen > 8 and currScreen < 21)
+{
+	handSize := 3
+}
+return
+
+4::
+if (currScreen > 8 and currScreen < 21)
+{
+	handSize := 4
+}
+return
+
+5::
+if (currScreen > 8 and currScreen < 21)
+{
+	handSize := 5
+}
+return
+
+6::
+if (currScreen > 8 and currScreen < 21)
+{
+	handSize := 6
+}
+return
+
+7::
+if (currScreen > 8 and currScreen < 21)
+{
+	handSize := 7
+}
+return
+
+8::
+if (currScreen > 8 and currScreen < 21)
+{
+	handSize := 8
+}
+return
+
+9::
+if (currScreen > 8 and currScreen < 21)
+{
+	handSize := 9
+}
+return
+
+0::
+if (currScreen > 8 and currScreen < 21)
+{
+	handSize := 10
+}
+return
+
+; wondering if I should put some mouse-nudge buttons in here
 ; {Up}::
 ;  return
 
@@ -181,12 +279,7 @@ return
 
 launchGame()
 {
-; this function should result in the following state
-; Battle.net Window Open
-; Hearthstone selected from list of game
-; Mouse cursor on the PLAY button
-
-; Launch Battle.net and Select Hearthstone
+	; Launch Battle.net and Select Hearthstone
 	; Apparently, you can't launch Hearthstone directly from the exe
 	; Run C:\Program Files (x86)\Hearthstone\Hearthstone.exe
 	; Run C:\Program Files (x86)\Hearthstone\Hearthstone Beta Launcher.exe
@@ -229,7 +322,7 @@ addScreenPosition(x,y,targetScreen)
 
 	target%currScreen%_%currScreenPosition% := targetScreen
 
-	; capturing informatoin before resetting for next position
+	; capturing information before resetting for next position
 	if(debug)
 	{
 		kolog("SENT for " currScreenPosition " x/y/target: " x "/" y "/" targetScreen)
@@ -452,15 +545,172 @@ screenProcess(targetScreenNum)
 	}
 	else ; default
 	{
-		; sleep for as long as it takes the screen to load
-		sleep loadingTime
 	}
-	; re-enable hotkeys
+}
+
+checkHandSize()
+{
+	; this function will eventually have logic to verify how many cards in hand
+	; this will set variable handSize to functions best guess as to the hand size
+	; if it cant be determined, it will call function askHandSize
+	;
+	; logic:
+	; this function searches for white in the area where a gem for certain cards should be
 	
-	Suspend, off
+	; x and y Offsets for cards to check for
+
+	ax := -.13
+	ay := -.76
+	bx := -.23
+	by := -.76
+	cx := -.47
+	cy := -.86
+	dx := -.32
+	dy := -.76
+	ex := -.45
+	ey := -.87
+	fx := -.21
+	fy := -.79
+	gx := .22
+	gy := -.80
+	hx := -.38
+	hy := -.83
+	ix := .11
+	iy := -.79
+	jx := .14
+	jy := -.78
+	kx := -.40
+	ky := -.87
+	lx := -.42
+	ly := -.87
+	mx := -.42
+	my := -.86
+	nx := -.22
+	ny := -.78
+	ox := -.52
+	oy := -.96
+	px := -.44
+	py := -.90
+
+	; checks whether a gem is in the area around each point
+	a := searchPointArea(aX,aY)
+	b := searchPointArea(bX,bY)
+	c := searchPointArea(cX,cY)
+	d := searchPointArea(dX,dY)
+	e := searchPointArea(eX,eY)
+	f := searchPointArea(fX,fY)
+	g := searchPointArea(gX,gY)
+	h := searchPointArea(hX,hY)
+	i := searchPointArea(iX,iY)
+	j := searchPointArea(jX,jY)
+	k := searchPointArea(kX,kY)
+	l := searchPointArea(lX,lY)
+	m := searchPointArea(mX,mY)
+	n := searchPointArea(nX,nY)
+	o := searchPointArea(oX,oY)
+	p := searchPointArea(pX,pY)
 	
-	; disable ToolTip
-	ToolTip
+	; combinations of points having gems or not should reflect the number of cards
+	; true values mean that there is a gem in that position
+	; false values mean that there is not a gem in that position
+	
+	; if the last else is reached, it means the function failed to determine the number of cards
+	; either because of search function failure or an unknown combinations of gem/non-gem points is found
+	; so, it just asks the user outright how many cards they have
+
+	if a and !b and !c and !d and !e and !f and !g and !h and !i and !j and !k and !l and !m and !n and !o and !p
+		handSize := 1
+	else if !a and b and !c and !d and !e and !f and !g and !h and !i and !j and !k and !l and !m and !n and !o and !p
+		handSize := 2
+	else if a and !b and !c and d and !e and !f and !g and !h and !i and !j and !k and !l and !m and !n and !o and !p
+		handSize := 3
+	else if !a and !b and !c and !d and e and !f and !g and !h and !i and !j and !k and !l and !m and !n and !o and !p
+		handSize := 4
+	else if !b and c and !d and !e and !f and !g and !h and !i and !j and !k and !l and !m and !n and !o and !p
+		handSize := 5
+	else if !a and !b and !c and !d and !e and f and g and !h and !i and !j and !k and !l and !m and !n and !o and !p
+		handSize := 6
+	else if !b and !c and !d and !e and !f and !g and h and i and !j and !k and !l and !m and !n and !o and !p
+		handSize := 7
+	else if !a and !b and !c and !d and !e and !f and !g and !h and !i and j and k and !l and !m and !n and !o and !p
+		handSize := 8
+	else if !a and !b and !c and !d and !e and !f and !g and !h and !i and !j and !k and l and m and n and !o and !p
+		handSize := 9
+	else if !a and !b and !c and !d and !e and !f and !g and !h and !i and !j and !k and !l and !m and !n and o and p
+		handSize := 10
+	else if !a and !b and !c and !d and !e and !f and !g and !h and !i and !j and !k and !l and !m and !n and !o and !p
+		handSize := 0
+	else
+		MsgBox Must ask hand size
+		; askHandSize()
+	
+	MsgBox Hand Size is %handSize%
+}
+
+searchPointArea(xOff,yOff)
+{
+	; helper function for checkHandSize
+	; looks for pure white which occurs on gems
+	; if there is white around the specified point, returns true
+	global
+	
+		; convert the offsets to x/y coordinates for a point
+		pointX := zeroX + maxX * xOff
+		pointY := zeroY - maxY * yOff
+		
+		; find the coordinates around the point
+		; this determines where we're going to search to see if it's a gem or not
+		startX := pointX - pixelsAway
+		endX := pointX + pixelsAway
+		startY := pointY - pixelsAway
+		endY := pointY + pixelsAway
+		
+		; search for white
+		PixelSearch, foundX,foundY, startX,startY, endX,endY, 0xFFFFFF, numShades, Slow
+	MsgBox Nothing found %numShades% away
+	PixelSearch, BLEX,BLEY, startX,startY, endX,endY, 0xFFFFFF, 255, Slow
+	MsgBox Nothing found +255 away
+	ExitApp
+			
+		; ErrorLevel 1 means color not found
+		; ErrorLevel 0 means color found
+		; ErrorLevel 2 means PixelSearch failed
+		if ErrorLevel = 1
+		{
+			return false
+		}
+		else if ErrorLevel = 0
+		{
+			return true
+		}
+		else
+		{
+			; this catches the case where the search fails completely
+			; it waits 100ms and tries searching again
+			; if it still fails to find the color, returns false
+			sleep 100
+			PixelSearch, foundX,foundY, startX,startY, endX,endY, 0xFFFFFF, numShades, Slow
+
+			if ErrorLevel = 0
+			{
+				return true
+			}
+			else
+			{
+				return false
+			}
+		}
+}
+
+askHandSize()
+{
+	global
+		handSize = -1
+		while (handSize < 0)
+		{
+			ToolTip, What is your current hand size? (Please use the number keys)`n(Type 0 for 10 and type ` for 0), zeroX,zeroY
+			sleep 500
+		}
 }
 
 assert(condition, lineNumber)

@@ -1,6 +1,7 @@
 #Include isFullscreen.ahk ; isFullscreen() function
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
+; global variables
 debug = true
 logging = true
 
@@ -278,7 +279,22 @@ completeScreen()
 gotoScreen()
 {
 	global
+	; display ToolTip
+	ToolTip, ko-hearthstone is working..., zeroX, zeroY
+
+	; disable user controls
+	Suspend, on
+
 	screenProcess(currScreen)
+
+	verifyScreen(currScreen)
+
+	; re-enable hotkeys
+	Suspend, off
+
+	; disable ToolTip
+	ToolTip
+	
 	currScreenPosition := prevPos%currScreen%
 
 	MoveMouse()
@@ -316,16 +332,6 @@ MoveClick(xOff,yOff)
 screenProcess(targetScreenNum)
 {
 	global
-	; display ToolTip
-
-	ToolTip, ko-hearthstone is working..., zeroX, zeroY
-
-	; default loading time
-	loadingTime := 1000
-
-	; disable user controls
-	Suspend, on
-
 	; process screen-specific processes
 	; also used to adjust the loading time for each screen
 
@@ -432,9 +438,16 @@ screenProcess(targetScreenNum)
 			fourCards := true
 		}
 
+		; assuming 3 starting cards
+		; hand size will be 4; 3 starting cards + drawn card
+		handSize := 4
+
 		if(fourCards)
 		{
 			currScreen := 8 ; Screen 8 is the one with 4 cards
+			
+			; hand size will be 6; 4 starting cards + coin + drawn card
+			handSize := 6
 		}
 	}
 	else ; default

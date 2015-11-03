@@ -107,6 +107,11 @@ if (currScreenPosition >= screenSizes%currScreen%)
 	currScreenPosition := 0
 }
 MoveMouse()
+
+if(debug)
+{
+	ToolTip, Screen %currScreen% Current Position %currScreenPosition% , 110,5
+}
 return
 
 +Tab::
@@ -116,6 +121,11 @@ if (currScreenPosition < 0)
 	currScreenPosition := screenSizes%currScreen% - 1
 }
 MoveMouse()
+
+if(debug)
+{
+	ToolTip, Screen %currScreen% Current Position %currScreenPosition% , 110,5
+}
 return
 
 Space::
@@ -217,6 +227,14 @@ addScreenPosition(x,y,targetScreen)
 	screenY%currScreen%_%currScreenPosition% := y
 
 	target%currScreen%_%currScreenPosition% := targetScreen
+
+	; capturing informatoin before resetting for next position
+	if(debug)
+	{
+		kolog("SENT for " currScreenPosition " x/y/target: " x "/" y "/" targetScreen)
+	}
+	
+	; resettng for next position
 	currScreenPosition += 1
 }
 
@@ -238,6 +256,21 @@ completeScreen()
 	global
 	prevPos%currScreen% := 0
 	screenSizes%currScreen% := currScreenPosition
+
+	; capturing informatoin before resetting for next screen completion
+	if(debug)
+	{
+		kolog("`nCompleting Screen: " currScreen)
+		Loop %currScreenPosition%
+		{
+			actualIndex := A_Index - 1
+			testX := screenX%currScreen%_%actualIndex%
+			testY := screenY%currScreen%_%actualIndex%
+			kolog("Position: " actualIndex " -- X/Y: " testX "/" testY "`n")
+		}
+	}
+
+	; resetting for next screen completion
 	currScreen += 1
 	currScreenPosition := 0
 }

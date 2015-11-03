@@ -29,20 +29,20 @@ addScreenPosition(0,0,1) ; > 1 MAIN MENU
 completeScreen()
 
 ; 1 MAIN MENU
-addScreenPosition(0,.38,??) ; PLAY
+addScreenPosition(0,.38,99) ; PLAY
 addScreenPosition(0,.25,2) ; SOLO
-addScreenPosition(0,.1,??) ; ARENA
-addScreenPosition(-.84,-.73,??) ; SHOP
-addScreenPosition(-.58,-.73,??) ; QUEST LOG
-addScreenPosition(-.26,-.69,??) ; OPEN PACKS
-addScreenPosition(.14,-.69,??) ; MY COLLECTION
+addScreenPosition(0,.1,99) ; ARENA
+addScreenPosition(-.84,-.73,99) ; SHOP
+addScreenPosition(-.58,-.73,99) ; QUEST LOG
+addScreenPosition(-.26,-.69,99) ; OPEN PACKS
+addScreenPosition(.14,-.69,99) ; MY COLLECTION
 completeScreen()
 
 ; 2 SOLO
 addScreenPosition(.6,.58,-1) ; Select Normal
 addScreenPosition(.6,.45,-1) ; Select Expert`
-addScreenPosition(.6,.32,??) ; NAXXRAMAS
-addScreenPosition(.6,.14,??) ; BLACKROCK
+addScreenPosition(.6,.32,99) ; NAXXRAMAS
+addScreenPosition(.6,.14,99) ; BLACKROCK
 addScreenPosition(.6,-.64,3) ; CHOOSE
 addScreenPosition(.88,-0.84,1) ; BACK
 completeScreen()

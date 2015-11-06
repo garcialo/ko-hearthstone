@@ -5,12 +5,12 @@
 ; X and Y Offest assume that 0,0 is in the center of the playable area
 ;
 ; X Offsets range from
-; * -1 -- left boundary of the playable area to
-; *  1 -- right boundary of the playable area
+; -1 -- left boundary of the playable area to
+;  1 -- right boundary of the playable area
 ;
 ; Y Offsets range from
-; * -1 -- bottom of the playable area to
-; *  1 -- top of the playable area
+; -1 -- bottom of the playable area to
+;  1 -- top of the playable area
 ;
 ; Target should be one of the following values
 ; -1 -- do nothing; used for selecting options that dont' take the user to another screen
@@ -23,6 +23,27 @@
 ; 1 - MAIN MENU
 ; 2 - SOLO
 ; 3 - PRACTICE CUSTOM DECKS
+; 4 - PRACTICE BASIC DECKS
+; 5 PRACTICE BASIC DECKS CHOOSE OPPONENT
+; 6 PRACTICE CUSTOM DECKS CHOOSE OPPONENT
+; 7 STARTING HAND 3 CARDS
+; 8 STARTING HAND 4 CARDS
+; 9 GAME STATUS SCREEN
+; 10 GAME PLAY SCREEN - 0 CARDS
+; 11 GAME PLAY SCREEN - 1 CARDS
+; 12 GAME PLAY SCREEN - 2 CARDS
+; 13 GAME PLAY SCREEN - 3 CARDS
+; 14 GAME PLAY SCREEN - 4 CARDS
+; 15 GAME PLAY SCREEN - 5 CARDS
+; 16 GAME PLAY SCREEN - 6 CARDS
+; 17 GAME PLAY SCREEN - 7 CARDS
+; 18 GAME PLAY SCREEN - 8 CARDS
+; 19 GAME PLAY SCREEN - 9 CARDS
+; 20 GAME PLAY SCREEN - 10 CARDS
+
+;
+; SCREENS
+;
 
 ; 0 - Today's Quests
 addScreenPosition(0,0,1) ; > 1 MAIN MENU

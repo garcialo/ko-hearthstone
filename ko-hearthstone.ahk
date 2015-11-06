@@ -299,19 +299,31 @@ launchGame()
 	; Calling the shortcut in the Start Menu works. Hopefully you created one. =p
 	; Run C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Hearthstone\Hearthstone
 	; calling the Start Menu shortcut generically
-	Run %A_ProgramsCommon%\Hearthstone\Hearthstone
+	Run, %A_ProgramsCommon%\Hearthstone\Hearthstone,, UseErrorLevel
+	if ErrorLevel
+	{
+		kolog("Launch: " ErrorLevel)
+		closeGame()
+	}
+	else
+	{
+		kolog("Launch: SUCCESS :: Battle.net")
+	}
 	WinWait Battle.net
 	WinActivate Battle.net
-	
+
 ; Put mouse cursor on PLAY
 	WinGetPos,,,,battleHeight,Battle.net
 	xBattlePlay = 287
 	yBattlePlay := battleHeight - 70
 
 	MouseMove, xBattlePlay, yBattlePlay
+	sleep 50
 	Send {Click}
+	sleep 50
 	
 	WinWait Hearthstone
+	kolog("Launch: SUCCESS :: Hearthstone")
 }
 
 closeGame()
@@ -373,6 +385,7 @@ completeScreen()
 			testY := screenY%currScreen%_%actualIndex%
 			kolog("Position: " actualIndex " -- X/Y: " testX "/" testY)
 		}
+		kolog("")
 	}
 
 	; resetting for next screen completion

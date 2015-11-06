@@ -84,14 +84,6 @@ maxY := Floor(playHeight / 2)
 
 ; logging final variables for use
 kolog("Fullscreen: " fullscreen "`nWidth/Height: " width " x " height "`nPlayW/PlayH: " playWidth " x " playHeight "`nZeroX/ZeroY: " zeroX " x " zeroY "`nMaxX/MaxY: " maxX " x " maxY)
-; variables explained
-; fullscreen - true if fullscreen; false if windowed
-; width - fullscreen: monitor width -- windowed: total window width
-; height - fullscreen: monitor height -- windowed: total window height
-; playWidth - fullscreen: monitor width -- windows: window width minus left/right border
-; playHeight - fullscreen: monitor height -- windows: window height minus (title bar + top/bottom border)
-; zeroX - width variable / 2
-; zeroY - 
 
 ; Setting up Screens and Screen Mouse Positions
 currScreen := 0

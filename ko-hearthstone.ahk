@@ -1,4 +1,3 @@
-#Include isFullscreen.ahk ; isFullscreen() function
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ; global variables
@@ -13,7 +12,6 @@ numShades := 1
 FormatTime,timestamp
 kolog(timestamp)
 
-; WinHide ahk_class Shell_TrayWnd
 IfWinNotExist Hearthstone
 {
 	launchGame()
@@ -24,11 +22,18 @@ IfWinNotExist Hearthstone
 ; get width/height of Hearthstone Window
 WinGetPos,,, width, height, Hearthstone
 
+; settings file contains variables for fullscreen/height/width
+; height and width reflect play area resolution, not play area size
+; height/width only useful if in windowed mode
+settingsFile = %LocalAppData%/Blizzard/Hearthstone/options.txt
+
 ; checking if fullscreen or not
-fullscreen := false
-if (isFullscreen(Hearthstone))
+FileReadLine, userFullscreen, %settingsFile%, 3
+if not ErrorLevel
 {
-	fullscreen := true
+	; get enough characters to check whether is 'graphicsfullscreen=True'
+	StringRight, userIsFullscreen, userFullscreen, 4
+	fullscreen := userIsFullscreen = "True"
 }
 
 playHeight := 0
@@ -53,9 +58,13 @@ else
 	SysGet, topBottomBorderSize, 33
 	SysGet, titleBarSize, 4
 
-	; playHeight/Width reflect the play area without window borders/titlebar
-	playWidth := width - leftRightBorderSize * 2
-	playHeight := height - titleBarSize - topBottomBorderSize * 2
+	; getting play area size from settings file
+	FileReadLine, userHeight, %settingsFile%, 4
+	if not ErrorLevel
+		playHeight := SubStr(userHeight, 16)
+	FileReadLine, userWidth, %settingsFile%, 6
+	if not ErrorLevel
+		playWidth := SubStr(userWidth, 15)
 
 	; zeroY is half window height; and lowered to account for size of title bar
 	zeroY := titleBarSize + topBottomBorderSize + (playHeight / 2)
@@ -75,6 +84,14 @@ maxY := Floor(playHeight / 2)
 
 ; logging final variables for use
 kolog("Fullscreen: " fullscreen "`nWidth/Height: " width " x " height "`nPlayW/PlayH: " playWidth " x " playHeight "`nZeroX/ZeroY: " zeroX " x " zeroY "`nMaxX/MaxY: " maxX " x " maxY)
+; variables explained
+; fullscreen - true if fullscreen; false if windowed
+; width - fullscreen: monitor width -- windowed: total window width
+; height - fullscreen: monitor height -- windowed: total window height
+; playWidth - fullscreen: monitor width -- windows: window width minus left/right border
+; playHeight - fullscreen: monitor height -- windows: window height minus (title bar + top/bottom border)
+; zeroX - width variable / 2
+; zeroY - 
 
 ; Setting up Screens and Screen Mouse Positions
 currScreen := 0

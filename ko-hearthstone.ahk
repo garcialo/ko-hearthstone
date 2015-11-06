@@ -83,7 +83,7 @@ maxX := Floor(minWidth / 2)
 maxY := Floor(playHeight / 2)
 
 ; logging final variables for use
-kolog("Fullscreen: " fullscreen "`nWidth/Height: " width " x " height "`nPlayW/PlayH: " playWidth " x " playHeight "`nZeroX/ZeroY: " zeroX " x " zeroY "`nMaxX/MaxY: " maxX " x " maxY)
+kolog("Fullscreen: " fullscreen "`nWindow Width/Height: " width " x " height "`nPlay Width/Height: " playWidth " x " playHeight "`nZeroX/ZeroY: " zeroX " x " zeroY "`nMaxX/MaxY: " maxX " x " maxY "`n")
 
 ; Setting up Screens and Screen Mouse Positions
 currScreen := 0
@@ -297,7 +297,9 @@ launchGame()
 	; Run C:\Program Files (x86)\Hearthstone\Hearthstone.exe -launch -uid hs_beta
 	
 	; Calling the shortcut in the Start Menu works. Hopefully you created one. =p
-	Run C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Hearthstone\Hearthstone
+	; Run C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Hearthstone\Hearthstone
+	; calling the Start Menu shortcut generically
+	Run %A_ProgramsCommon%\Hearthstone\Hearthstone
 	WinWait Battle.net
 	WinActivate Battle.net
 	
@@ -363,13 +365,13 @@ completeScreen()
 	; capturing informatoin before resetting for next screen completion
 	if(debug)
 	{
-		kolog("`nCompleting Screen: " currScreen)
+		kolog("Completing Screen: " currScreen)
 		Loop %currScreenPosition%
 		{
 			actualIndex := A_Index - 1
 			testX := screenX%currScreen%_%actualIndex%
 			testY := screenY%currScreen%_%actualIndex%
-			kolog("Position: " actualIndex " -- X/Y: " testX "/" testY "`n")
+			kolog("Position: " actualIndex " -- X/Y: " testX "/" testY)
 		}
 	}
 

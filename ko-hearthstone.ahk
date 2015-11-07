@@ -1,3 +1,4 @@
+#SingleInstance force
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ; global variables
@@ -129,7 +130,7 @@ if (currScreenPosition >= screenSizes%currScreen%)
 }
 MoveMouse()
 
-if(debug)
+if (debug)
 {
 	targetTemp := target%currScreen%_%currScreenPosition%
 	ToolTip, Screen %currScreen% Current Position %currScreenPosition% GoesTo %targetTemp%, 110,5
@@ -144,7 +145,7 @@ if (currScreenPosition < 0)
 }
 MoveMouse()
 
-if(debug)
+if (debug)
 {
 	targetTemp := target%currScreen%_%currScreenPosition%
 	ToolTip, Screen %currScreen% Current Position %currScreenPosition% GoesTo %targetTemp%, 110,5
@@ -271,6 +272,37 @@ if (currScreen > 8 and currScreen < 21)
 	handSize := 10
 }
 return
+
+o::
+Run, drawOnScreen.ahk
+sleep 50
+
+; Toggle drawing off
+Send {F1}
+
+checkHandSize()
+; Send [F12]
+return
+
+draw(xOff,yOff)
+{
+	global
+	local x := zeroX + maxX * xOff
+	local y := zeroY - maxY * yOff
+	
+	local x2 := x+1
+	
+	; Move mouse where we want drawing
+	MouseMove x,y
+	; Toggle on Drawing
+	Send {F1}
+	sleep 10
+	; Moving mouse 1 pixel to the right to initiate drawing
+	MouseMove x2,y
+	; Toggle off Drawing
+	Send {F1}
+	sleep 10
+}
 
 ; wondering if I should put some mouse-nudge buttons in here
 ; {Up}::
@@ -583,7 +615,7 @@ checkHandSize()
 	; this function searches for white in the area where a gem for certain cards should be
 	
 	; x and y Offsets for cards to check for
-
+global
 	ax := -.13
 	ay := -.76
 	bx := -.23
@@ -617,6 +649,29 @@ checkHandSize()
 	px := -.44
 	py := -.90
 
+	if (debug)
+	{
+		draw(ax,ay)
+		draw(bx,by)
+		draw(cx,cy)
+		draw(dx,dy)
+		draw(ex,ey)
+		draw(fx,fy)
+		draw(gx,gy)
+		draw(hx,hy)
+		draw(ix,iy)
+		draw(jx,jy)
+		draw(kx,ky)
+		draw(lx,ly)
+		draw(mx,my)
+		draw(nx,ny)
+		draw(ox,oy)
+		draw(px,py)
+	}
+	
+; Halting checkHandSize Here
+return	
+	
 	; checks whether a gem is in the area around each point
 	a := searchPointArea(aX,aY)
 	b := searchPointArea(bX,bY)

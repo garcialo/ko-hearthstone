@@ -53,6 +53,7 @@ completeScreen()
 addScreenPosition(0,.38,99) ; PLAY
 addScreenPosition(0,.25,2) ; SOLO
 addScreenPosition(0,.1,99) ; ARENA
+addScreenPosition(0,-.05,99) ; TAVERN BRAWL
 addScreenPosition(-.84,-.73,99) ; SHOP
 addScreenPosition(-.58,-.73,99) ; QUEST LOG
 addScreenPosition(-.26,-.69,99) ; OPEN PACKS

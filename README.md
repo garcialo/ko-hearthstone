@@ -20,16 +20,25 @@ An attempt to make Hearthstone playable with keyboard only.
 
 ---
 
-### Commands
+### What Can Be Done Currently
+1. Launch Hearthstone
+1. Create a Practice Game using a Basic or Custom Deck
+1. Guess starting hand size automatically
+1. View Game Status areas
+
+---
+
+## Controls
+
+### General Commands
 * Tab: Next item
 * Shift+Tab: Previous item
 * Space or Enter: Click
 * Shift+Space: Right-click
 * q: Exit
 
-### What Can Be Done Currently
-1. Launch Hearthstone
-1. Currently can navigate directly to creating a Practice Game using a Basic or Custom Deck
+### Gameplay
+* p: Toggle between Game Status and Game Action
 
 ---
 

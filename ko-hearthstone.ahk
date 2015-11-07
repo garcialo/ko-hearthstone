@@ -101,8 +101,10 @@ currScreenPosition := 0
 
 ; wait for Hearthstone to fully load
 Suspend, on
+ToolTip, ko-hearthstone is waiting for Hearthstone to load, zeroX,zeroY
 sleep 17000
 Suspend, off
+ToolTip
 MoveMouse()
 
 ; The overlay is now in place. The script should run until closed by the user.
@@ -125,7 +127,8 @@ MoveMouse()
 
 if(debug)
 {
-	ToolTip, Screen %currScreen% Current Position %currScreenPosition% , 110,5
+	targetTemp := target%currScreen%_%currScreenPosition%
+	ToolTip, Screen %currScreen% Current Position %currScreenPosition% GoesTo %targetTemp%, 110,5
 }
 return
 
@@ -139,7 +142,8 @@ MoveMouse()
 
 if(debug)
 {
-	ToolTip, Screen %currScreen% Current Position %currScreenPosition% , 110,5
+	targetTemp := target%currScreen%_%currScreenPosition%
+	ToolTip, Screen %currScreen% Current Position %currScreenPosition% GoesTo %targetTemp%, 110,5
 }
 return
 
@@ -186,10 +190,6 @@ else if (currScreen > 9 and currScreen < 20)
 	currScreen := 9
 	gotoScreen()
 }
-return
-
-o::
-askHandSize()
 return
 
 `::
@@ -687,7 +687,7 @@ searchPointArea(xOff,yOff)
 		startY := pointY - pixelsAway
 		endY := pointY + pixelsAway
 		
-		; search for white
+		; search for white or green
 		PixelSearch, foundX,foundY, startX,startY, endX,endY, 0xFFFFFF, numShades, Slow
 	MsgBox Nothing found %numShades% away
 	PixelSearch, BLEX,BLEY, startX,startY, endX,endY, 0xFFFFFF, 255, Slow

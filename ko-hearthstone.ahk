@@ -61,10 +61,14 @@ else
 	; getting play area size from settings file
 	FileReadLine, userHeight, %settingsFile%, 4
 	if not ErrorLevel
+	{
 		playHeight := SubStr(userHeight, 16)
+	}
 	FileReadLine, userWidth, %settingsFile%, 6
 	if not ErrorLevel
+	{
 		playWidth := SubStr(userWidth, 15)
+	}
 
 	; zeroY is half window height; and lowered to account for size of title bar
 	zeroY := titleBarSize + topBottomBorderSize + (playHeight / 2)
@@ -170,7 +174,6 @@ if (currScreen = 9) ; if GAME STATUS SCREEN, GO TO THE APPROPRIATE GAMEPLAY SCRE
 {
 	prevPos%currScreen% := currScreenPosition
 	handSize := -1
-	checkHandSize()
 
 	if handSize < 0
 	{

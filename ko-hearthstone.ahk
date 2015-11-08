@@ -273,37 +273,6 @@ if (currScreen > 8 and currScreen < 21)
 }
 return
 
-o::
-Run, drawOnScreen.ahk
-sleep 50
-
-; Toggle drawing off
-Send {F1}
-
-checkHandSize()
-; Send [F12]
-return
-
-draw(xOff,yOff)
-{
-	global
-	local x := zeroX + maxX * xOff
-	local y := zeroY - maxY * yOff
-	
-	local x2 := x+1
-	
-	; Move mouse where we want drawing
-	MouseMove x,y
-	; Toggle on Drawing
-	Send {F1}
-	sleep 10
-	; Moving mouse 1 pixel to the right to initiate drawing
-	MouseMove x2,y
-	; Toggle off Drawing
-	Send {F1}
-	sleep 10
-}
-
 ; wondering if I should put some mouse-nudge buttons in here
 ; {Up}::
 ;  return
@@ -605,8 +574,32 @@ screenProcess(targetScreenNum)
 	}
 }
 
+o::
+Run, betterDraw.ahk
+sleep 50
+
+checkHandSize()
+; Send {Esc}
+return
+
+draw(xOff,yOff)
+{
+	global
+	local x := zeroX + maxX * xOff
+	local y := zeroY - maxY * yOff
+	
+	local y2 := y+3
+	
+	MouseClickDrag, Left, x,y ,x,y2, 100
+}
+
 checkHandSize()
 {
+	; this looks like the points will not work
+	; the points need to be reworked
+	; also need to make sure to look for both WHITE and the GREEN that is used when the card cost is modified
+	; make sure and check for these positions on desktop, not on laptop
+
 	; this function will eventually have logic to verify how many cards in hand
 	; this will set variable handSize to functions best guess as to the hand size
 	; if it cant be determined, it will call function askHandSize
@@ -651,22 +644,37 @@ global
 
 	if (debug)
 	{
-		draw(ax,ay)
-		draw(bx,by)
-		draw(cx,cy)
-		draw(dx,dy)
-		draw(ex,ey)
-		draw(fx,fy)
-		draw(gx,gy)
-		draw(hx,hy)
-		draw(ix,iy)
-		draw(jx,jy)
-		draw(kx,ky)
-		draw(lx,ly)
-		draw(mx,my)
-		draw(nx,ny)
 		draw(ox,oy)
+		Send {F1}
+		draw(cx,cy)
+		Send {F1}	
+		draw(ex,ey)
+		Send {F1}
 		draw(px,py)
+		Send {F1}
+		draw(lx,ly)
+		Send {F1}
+		draw(kx,ky)
+		Send {F1}
+		draw(hx,hy)
+		Send {F1}
+		draw(mx,my)
+		Send {F1}		
+		draw(dx,dy)
+		Send {F1}	
+		draw(nx,ny)
+		Send {F1}		
+		draw(bx,by)
+		Send {F1}
+		draw(fx,fy)
+		Send {F1}		
+		draw(ax,ay)
+		Send {F1}
+		draw(ix,iy)
+		Send {F1}
+		draw(jx,jy)
+		Send {F1}
+		draw(gx,gy)
 	}
 	
 ; Halting checkHandSize Here

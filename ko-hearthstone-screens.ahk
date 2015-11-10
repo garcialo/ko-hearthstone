@@ -172,7 +172,6 @@ addScreenPosition(-.22,.54,-1) ; Enemy Weapon
 addScreenPosition(.22,.54,-1) ; Enemy Ability
 addScreenPosition(.94,.41,-1) ; Enemy Deck
 addScreenPosition(.94,-.15,-1) ; Player Deck
-addScreenPosition(-.22,-.54,-1) ; Player Weapon
 ; Enemy Cards at some point
 addScreenPosition(-.88,.39,-1) ; Game History 1
 addScreenPosition(-.88,.34,-1) ; 2
@@ -192,6 +191,7 @@ completeScreen()
 ; 10 GAME PLAY SCREEN - 0 CARDS
 addScreenPosition(0,.54,-1) ; Enemy Portrait
 addScreenPosition(0,-.54,-1) ; Player Portrait
+addScreenPosition(-.22,-.54,-1) ; Player Weapon
 addScreenPosition(.22,-.54,-1) ; Player Ability
 addScreenPosition(.84,.1,9) ; End Turn
 completeScreen()
@@ -201,6 +201,7 @@ addScreenPosition(-.04,-.9,-1) ; Hand
 addScreenPosition(.84,.1,-1) ; End Turn
 addScreenPosition(0,.54,-1) ; Enemy Portrait
 addScreenPosition(0,-.54,-1) ; Player Portrait
+addScreenPosition(-.22,-.54,-1) ; Player Weapon
 addScreenPosition(.22,-.54,9) ; Player Ability
 
 completeScreen()
@@ -211,6 +212,7 @@ addScreenPosition(.04,-.9,-1) ; Hand End
 addScreenPosition(.84,.1,9) ; End Turn
 addScreenPosition(0,.54,-1) ; Enemy Portrait
 addScreenPosition(0,-.54,-1) ; Player Portrait
+addScreenPosition(-.22,-.54,-1) ; Player Weapon
 addScreenPosition(.22,-.54,-1) ; Player Ability
 completeScreen()
 
@@ -221,6 +223,7 @@ addScreenPosition(.14,-.9,-1) ; Hand Ends
 addScreenPosition(.84,.1,9) ; End Turn
 addScreenPosition(0,.54,-1) ; Enemy Portrait
 addScreenPosition(0,-.54,-1) ; Player Portrait
+addScreenPosition(-.22,-.54,-1) ; Player Weapon
 addScreenPosition(.22,-.54,-1) ; Player Ability
 completeScreen()
 
@@ -232,6 +235,7 @@ addScreenPosition(.22,-.9,-1) ; Hand End
 addScreenPosition(.84,.1,9) ; End Turn
 addScreenPosition(0,.54,-1) ; Enemy Portrait
 addScreenPosition(0,-.54,-1) ; Player Portrait
+addScreenPosition(-.22,-.54,-1) ; Player Weapon
 addScreenPosition(.22,-.54,-1) ; Player Ability
 completeScreen()
 
@@ -244,6 +248,7 @@ addScreenPosition(.25,-.9,-1) ; Hand End
 addScreenPosition(.84,.1,9) ; End Turn
 addScreenPosition(0,.54,-1) ; Enemy Portrait
 addScreenPosition(0,-.54,-1) ; Player Portrait
+addScreenPosition(-.22,-.54,-1) ; Player Weapon
 addScreenPosition(.22,-.54,-1) ; Player Ability
 completeScreen()
 
@@ -257,6 +262,7 @@ addScreenPosition(.26,-.9,-1) ; Hand End
 addScreenPosition(.84,.1,9) ; End Turn
 addScreenPosition(0,.54,-1) ; Enemy Portrait
 addScreenPosition(0,-.54,-1) ; Player Portrait
+addScreenPosition(-.22,-.54,-1) ; Player Weapon
 addScreenPosition(.22,-.54,-1) ; Player Ability
 completeScreen()
 
@@ -271,6 +277,7 @@ addScreenPosition(.33,-.9,-1) ; Hand End
 addScreenPosition(.84,.1,9) ; End Turn
 addScreenPosition(0,.54,-1) ; Enemy Portrait
 addScreenPosition(0,-.54,-1) ; Player Portrait
+addScreenPosition(-.22,-.54,-1) ; Player Weapon
 addScreenPosition(.22,-.54,-1) ; Player Ability
 completeScreen()
 
@@ -286,6 +293,7 @@ addScreenPosition(.28,-.9,-1) ; Hand End
 addScreenPosition(.84,.1,9) ; End Turn
 addScreenPosition(0,.54,-1) ; Enemy Portrait
 addScreenPosition(0,-.54,-1) ; Player Portrait
+addScreenPosition(-.22,-.54,-1) ; Player Weapon
 addScreenPosition(.22,-.54,-1) ; Player Ability
 completeScreen()
 
@@ -302,6 +310,7 @@ addScreenPosition(.3,-.9,-1) ; Hand End
 addScreenPosition(.84,.1,9) ; End Turn
 addScreenPosition(0,.54,-1) ; Enemy Portrait
 addScreenPosition(0,-.54,-1) ; Player Portrait
+addScreenPosition(-.22,-.54,-1) ; Player Weapon
 addScreenPosition(.22,-.54,-1) ; Player Ability
 completeScreen()
 
@@ -319,5 +328,6 @@ addScreenPosition(.31,-.9,-1) ; Hand End
 addScreenPosition(.84,.1,9) ; End Turn
 addScreenPosition(0,.54,-1) ; Enemy Portrait
 addScreenPosition(0,-.54,-1) ; Player Portrait
+addScreenPosition(-.22,-.54,-1) ; Player Weapon
 addScreenPosition(.22,-.54,-1) ; Player Ability
 completeScreen()

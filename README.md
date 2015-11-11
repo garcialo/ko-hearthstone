@@ -11,7 +11,7 @@ An attempt to make Hearthstone playable with keyboard only.
 * [Install Hearthstone](https://us.battle.net/account/download/)
 * MUST have the Shortcut in your Start Menu  - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Hearthstone\Hearthstone
 * Probably need to launch Hearthstone at least once so it creates an options.txt in %LocalAppData%\Blizzard\Hearthstone\
-* Download ko-hearthstone.ahk or clone this repository
+* Download ko-hearthstone.ahk, ko-hearthstone-screens.ahk, and betterDraw.ahk OR clone this repository
 
 ---
 

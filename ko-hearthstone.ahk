@@ -26,15 +26,21 @@ WinGetPos,,, width, height, Hearthstone
 ; settings file contains variables for fullscreen/height/width
 ; height and width reflect play area resolution, not play area size
 ; height/width only useful if in windowed mode
-settingsFile = %LocalAppData%/Blizzard/Hearthstone/options.txt
+settingsFile = %LocalAppData%\Blizzard\Hearthstone\options.txt
 
 ; checking if fullscreen or not
-FileReadLine, userFullscreen, %settingsFile%, 3
+try
+	FileReadLine, userSettingFullscreen, %settingsFile%, 3
+catch e
+{
+	MsgBox % "Error - " e.What
+	closeGame()
+}
 if not ErrorLevel
 {
 	; get enough characters to check whether is 'graphicsfullscreen=True'
-	StringRight, userIsFullscreen, userFullscreen, 4
-	fullscreen := userIsFullscreen = "True"
+	StringRight, userSettingIsFullscreen, userSettingFullscreen, 4
+	fullscreen := userSettingIsFullscreen = "True"
 }
 
 playHeight := 0
@@ -60,15 +66,28 @@ else
 	SysGet, titleBarSize, 4
 
 	; getting play area size from settings file
-	FileReadLine, userHeight, %settingsFile%, 4
-	if not ErrorLevel
+	try
+		FileReadLine, userSettingHeight, %settingsFile%, 4
+	catch e
 	{
-		playHeight := SubStr(userHeight, 16)
+		MsgBox % "Error - " e.What
+		closeGame()
 	}
-	FileReadLine, userWidth, %settingsFile%, 6
 	if not ErrorLevel
 	{
-		playWidth := SubStr(userWidth, 15)
+		playHeight := SubStr(userSettingHeight, 16)
+	}
+
+	try
+		FileReadLine, userSettingWidth, %settingsFile%, 6
+	catch e
+	{
+		MsgBox % "Error - " e.What
+		closeGame()
+	}
+	if not ErrorLevel
+	{
+		playWidth := SubStr(userSettingWidth, 15)
 	}
 
 	; zeroY is half window height; and lowered to account for size of title bar

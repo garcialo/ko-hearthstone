@@ -26,14 +26,13 @@ SysGet, MonitorCount, MonitorCount
 MonitorNum := 1 ; primary monitor
 
 ; if multiple displays:
-if (MonitorCount > 1) {
-    Gui, Add, Text,, Select the display:
-    Gui, Add, UpDown, vMonitorNum Range1-%MonitorCount%, 1
-    Gui, Add, Button, default, OK  ; The label ButtonOK (if it exists) will be run when the button is pressed.
-    Gui, Show
-    return  ; End of auto-execute section. The script is idle until the user does something.
-
-}
+; if (MonitorCount > 1) {
+;    Gui, Add, Text,, Select the display:
+;    Gui, Add, UpDown, vMonitorNum Range1-%MonitorCount%, 1
+;    Gui, Add, Button, default, OK  ; The label ButtonOK (if it exists) will be run when the button is pressed.
+;    Gui, Show
+;    return  ; End of auto-execute section. The script is idle until the user does something.
+; }
 
 ButtonOK:
 Gui, Submit

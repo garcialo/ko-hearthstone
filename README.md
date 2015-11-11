@@ -10,6 +10,7 @@ An attempt to make Hearthstone playable with keyboard only.
 * [Install AutoHotKey](http://www.autohotkey.com/)
 * [Install Hearthstone](https://us.battle.net/account/download/)
 * MUST have the Shortcut in your Start Menu  - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Hearthstone\Hearthstone
+* Probably need to launch Hearthstone at least once so it creates an options.txt in %LocalAppData%\Blizzard\Hearthstone\
 * Download ko-hearthstone.ahk or clone this repository
 
 ---
@@ -18,13 +19,14 @@ An attempt to make Hearthstone playable with keyboard only.
 1. Download/install all prerequisites
 2. Run ko-hearthstone.ahk
 
+Please [create an issue](https://github.com/garcialo/ko-hearthstone/issues/new) for any oddness you encounter.
+
 ---
 
 ### What Can Be Done Currently
 1. Launch Hearthstone
-1. Create a Practice Game using a Basic or Custom Deck
-1. Guess starting hand size automatically
-1. View Game Status areas
+1. Create and Play a Practice Game using a Basic or Custom Deck
+1. Create a horrible deck of random cards iff no Custom Decks exist
 
 ---
 
@@ -38,7 +40,7 @@ An attempt to make Hearthstone playable with keyboard only.
 * q: Exit
 
 ### Gameplay
-* p: Toggle between Game Status and Game Action
+* p: Toggle between Game Status and Game Action screens
 
 ---
 

@@ -62,9 +62,9 @@ completeScreen()
 
 ; 2 SOLO
 addScreenPosition(.6,.58,-1) ; Select Normal
-addScreenPosition(.6,.45,-1) ; Select Expert`
-addScreenPosition(.6,.32,99) ; NAXXRAMAS
-addScreenPosition(.6,.14,99) ; BLACKROCK
+addScreenPosition(.6,.45,-1) ; Select Expert
+addScreenPosition(.6,.28,99) ; BLACKROCK
+addScreenPosition(.6,.05,99) ; NAXXRAMAS
 addScreenPosition(.6,-.64,3) ; CHOOSE
 addScreenPosition(.88,-0.84,1) ; BACK
 completeScreen()
@@ -189,42 +189,25 @@ addScreenPosition(-.88,-.3,-1) ; 13 - End Game History
 completeScreen()
 
 ; 10 GAME PLAY SCREEN - 0 CARDS
-addScreenPosition(0,.54,-1) ; Enemy Portrait
-addScreenPosition(0,-.54,-1) ; Player Portrait
-addScreenPosition(-.22,-.54,-1) ; Player Weapon
-addScreenPosition(.22,-.54,-1) ; Player Ability
-addScreenPosition(.84,.1,9) ; End Turn
+addGameplayCommon()
 completeScreen()
 
 ; 11 GAME PLAY SCREEN - 1 CARD
 addScreenPosition(-.04,-.9,-1) ; Hand
-addScreenPosition(.84,.1,-1) ; End Turn
-addScreenPosition(0,.54,-1) ; Enemy Portrait
-addScreenPosition(0,-.54,-1) ; Player Portrait
-addScreenPosition(-.22,-.54,-1) ; Player Weapon
-addScreenPosition(.22,-.54,9) ; Player Ability
-
+addGameplayCommon()
 completeScreen()
 
 ; 12 GAME PLAY SCREEN - 2 CARDS
 addScreenPosition(-.13,-.9,-1) ; Hand Begin
 addScreenPosition(.04,-.9,-1) ; Hand End
-addScreenPosition(.84,.1,9) ; End Turn
-addScreenPosition(0,.54,-1) ; Enemy Portrait
-addScreenPosition(0,-.54,-1) ; Player Portrait
-addScreenPosition(-.22,-.54,-1) ; Player Weapon
-addScreenPosition(.22,-.54,-1) ; Player Ability
+addGameplayCommon()
 completeScreen()
 
 ; 13 GAME PLAY SCREEN - 3 CARDS
 addScreenPosition(-.23,-.9,-1) ; Hand Begin
 addScreenPosition(-.06,-.9,-1)
 addScreenPosition(.14,-.9,-1) ; Hand Ends
-addScreenPosition(.84,.1,9) ; End Turn
-addScreenPosition(0,.54,-1) ; Enemy Portrait
-addScreenPosition(0,-.54,-1) ; Player Portrait
-addScreenPosition(-.22,-.54,-1) ; Player Weapon
-addScreenPosition(.22,-.54,-1) ; Player Ability
+addGameplayCommon()
 completeScreen()
 
 ; 14 GAME PLAY SCREEN - 4 CARDS
@@ -232,11 +215,7 @@ addScreenPosition(-.33,-.9,-1) ; Hand Begin
 addScreenPosition(-.15,-.9,-1)
 addScreenPosition(.04,-.9,-1)
 addScreenPosition(.22,-.9,-1) ; Hand End
-addScreenPosition(.84,.1,9) ; End Turn
-addScreenPosition(0,.54,-1) ; Enemy Portrait
-addScreenPosition(0,-.54,-1) ; Player Portrait
-addScreenPosition(-.22,-.54,-1) ; Player Weapon
-addScreenPosition(.22,-.54,-1) ; Player Ability
+addGameplayCommon()
 completeScreen()
 
 ; 15 GAME PLAY SCREEN - 5 CARDS
@@ -245,11 +224,7 @@ addScreenPosition(-.22,-.9,-1)
 addScreenPosition(-.08,-.9,-1)
 addScreenPosition(.08,-.9,-1)
 addScreenPosition(.25,-.9,-1) ; Hand End
-addScreenPosition(.84,.1,9) ; End Turn
-addScreenPosition(0,.54,-1) ; Enemy Portrait
-addScreenPosition(0,-.54,-1) ; Player Portrait
-addScreenPosition(-.22,-.54,-1) ; Player Weapon
-addScreenPosition(.22,-.54,-1) ; Player Ability
+addGameplayCommon()
 completeScreen()
 
 ; 16 GAME PLAY SCREEN - 6 CARDS
@@ -259,11 +234,7 @@ addScreenPosition(-.14,-.9,-1)
 addScreenPosition(-.03,-.9,-1)
 addScreenPosition(.08,-.9,-1)
 addScreenPosition(.26,-.9,-1) ; Hand End
-addScreenPosition(.84,.1,9) ; End Turn
-addScreenPosition(0,.54,-1) ; Enemy Portrait
-addScreenPosition(0,-.54,-1) ; Player Portrait
-addScreenPosition(-.22,-.54,-1) ; Player Weapon
-addScreenPosition(.22,-.54,-1) ; Player Ability
+addGameplayCommon()
 completeScreen()
 
 ; 17 GAME PLAY SCREEN - 7 CARDS
@@ -274,11 +245,7 @@ addScreenPosition(-.1,-.9,-1)
 addScreenPosition(.01,-.9,-1)
 addScreenPosition(.12,-.9,-1)
 addScreenPosition(.33,-.9,-1) ; Hand End
-addScreenPosition(.84,.1,9) ; End Turn
-addScreenPosition(0,.54,-1) ; Enemy Portrait
-addScreenPosition(0,-.54,-1) ; Player Portrait
-addScreenPosition(-.22,-.54,-1) ; Player Weapon
-addScreenPosition(.22,-.54,-1) ; Player Ability
+addGameplayCommon()
 completeScreen()
 
 ; 18 GAME PLAY SCREEN - 8 CARDS
@@ -290,11 +257,7 @@ addScreenPosition(-.5,-.9,-1)
 addScreenPosition(.5,-.9,-1)
 addScreenPosition(.14,-.9,-1)
 addScreenPosition(.28,-.9,-1) ; Hand End
-addScreenPosition(.84,.1,9) ; End Turn
-addScreenPosition(0,.54,-1) ; Enemy Portrait
-addScreenPosition(0,-.54,-1) ; Player Portrait
-addScreenPosition(-.22,-.54,-1) ; Player Weapon
-addScreenPosition(.22,-.54,-1) ; Player Ability
+addGameplayCommon()
 completeScreen()
 
 ; 19 GAME PLAY SCREEN - 9 CARDS
@@ -307,11 +270,7 @@ addScreenPosition(-.02,-.9,-1)
 addScreenPosition(.06,-.9,-1)
 addScreenPosition(.15,-.9,-1)
 addScreenPosition(.3,-.9,-1) ; Hand End
-addScreenPosition(.84,.1,9) ; End Turn
-addScreenPosition(0,.54,-1) ; Enemy Portrait
-addScreenPosition(0,-.54,-1) ; Player Portrait
-addScreenPosition(-.22,-.54,-1) ; Player Weapon
-addScreenPosition(.22,-.54,-1) ; Player Ability
+addGameplayCommon()
 completeScreen()
 
 ; 20 GAME PLAY SCREEN - 10 CARDS
@@ -325,9 +284,5 @@ addScreenPosition(0,-.9,-1)
 addScreenPosition(.08,-.9,-1)
 addScreenPosition(.16,-.9,-1)
 addScreenPosition(.31,-.9,-1) ; Hand End
-addScreenPosition(.84,.1,9) ; End Turn
-addScreenPosition(0,.54,-1) ; Enemy Portrait
-addScreenPosition(0,-.54,-1) ; Player Portrait
-addScreenPosition(-.22,-.54,-1) ; Player Weapon
-addScreenPosition(.22,-.54,-1) ; Player Ability
+addGameplayCommon()
 completeScreen()

@@ -2,8 +2,8 @@
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ; global variables
-debug = true
-logging = true
+debug = false
+logging = false
 handSize = 0
 
 ; globals used by checkHandSize

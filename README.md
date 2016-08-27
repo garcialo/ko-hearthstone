@@ -7,7 +7,7 @@ An attempt to make Hearthstone playable with keyboard only.
 
 ### Prerequisites
 * MS Windows
-* [Install AutoHotKey](http://www.autohotkey.com/)
+* [Install AutoHotKey v1.1](https://www.autohotkey.com/download/1.1/)
 * [Install Hearthstone](https://us.battle.net/account/download/)
 * MUST have the Shortcut in your Start Menu  - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Hearthstone\Hearthstone
 * Probably need to launch Hearthstone at least once so it creates an options.txt in %LocalAppData%\Blizzard\Hearthstone\

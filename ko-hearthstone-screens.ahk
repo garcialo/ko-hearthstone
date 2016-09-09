@@ -19,7 +19,7 @@
 ; Positive Numbers -- Index for all screens used in the game
 ;
 ; SCREEN LIST
-; 0 - Today's  Quests
+; 0 - Today's Quests
 ; 1 - MAIN MENU
 ; 2 - SOLO
 ; 3 - PRACTICE CUSTOM DECKS
@@ -63,8 +63,10 @@ completeScreen()
 ; 2 SOLO
 addScreenPosition(.6,.58,-1) ; Select Normal
 addScreenPosition(.6,.45,-1) ; Select Expert
-addScreenPosition(.6,.28,99) ; BLACKROCK
-addScreenPosition(.6,.05,99) ; NAXXRAMAS
+addScreenPosition(.6,.28,99) ; MOST RECENT ADVENTURE
+addScreenPosition(.6,.05,99) ; SECOND MOST RECENT ADVENTURE
+addScreenPosition(.6,-.18,99) ; THIRD MOST RECENT ADVENTURE
+addScreenPosition(.6,-.41,99) ; FOURTH MOST RECENT ADVENTURE
 addScreenPosition(.6,-.64,3) ; CHOOSE
 addScreenPosition(.88,-0.84,1) ; BACK
 completeScreen()
@@ -79,7 +81,8 @@ addScreenPosition(-.02,.02,-1) ; 6
 addScreenPosition(-.68,-.38,-1) ; 7
 addScreenPosition(-.34,-.38,-1) ; 8
 addScreenPosition(-.02,-.38,-1) ; 9 - End Custom Deck Slots
-addScreenPosition(-.58,-.82,4) ; Basic Decks
+addScreenPosition(-.94,.04,4) ; Basic Decks
+addScreenPosition(-.34,-.81,99) ; My Collection
 addScreenPosition(.78,.07,-1) ; Hero Ability
 addScreenPosition(.62,-.09,-1) ; Hero Experience
 addScreenPosition(.62,-.62,6) ; CHOOSE
@@ -96,7 +99,8 @@ addScreenPosition(-.02,.02,-1) ; 6
 addScreenPosition(-.68,-.38,-1) ; 7
 addScreenPosition(-.34,-.38,-1) ; 8
 addScreenPosition(-.02,-.38,-1) ; 9 - End Basic Deck Slots
-addScreenPosition(-.1,-.82,3) ; Custom Decks
+addScreenPosition(.24,.04,3) ; Custom Decks
+addScreenPosition(-.34,-.81,99) ; My Collection
 addScreenPosition(.78,.07,-1) ; Hero Ability
 addScreenPosition(.62,-.09,-1) ; Hero Experience
 addScreenPosition(.62,-.62,5) ; CHOOSE
@@ -124,7 +128,8 @@ addScreenPosition(-.02,.02,-1) ; 6
 addScreenPosition(-.68,-.38,-1) ; 7
 addScreenPosition(-.34,-.38,-1) ; 8
 addScreenPosition(-.02,-.38,-1) ; 9 - End Basic Deck Slots
-addScreenPosition(-.1,-.82,6) ; Custom Decks Choose Opponent
+addScreenPosition(.24,.04,6) ; Custom Decks Choose Opponent
+addScreenPosition(-.34,-.81,99) ; My Collection
 completeScreen()
 
 ; 6 PRACTICE CUSTOM DECKS CHOOSE OPPONENT
@@ -148,7 +153,8 @@ addScreenPosition(-.02,.02,-1) ; 6
 addScreenPosition(-.68,-.38,-1) ; 7
 addScreenPosition(-.34,-.38,-1) ; 8
 addScreenPosition(-.02,-.38,-1) ; 9 - End Basic Deck Slots
-addScreenPosition(-.58,-.82,5) ; Basic Decks Choose Opponent
+addScreenPosition(-.94,.04,5) ; Basic Decks Choose Opponent
+addScreenPosition(-.34,-.81,99) ; My Collection
 completeScreen()
 
 ; 7 STARTING HAND 3 CARDS

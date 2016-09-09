@@ -181,6 +181,10 @@ if (target%currScreen%_%currScreenPosition% > -1)
 	currScreen := target%currScreen%_%currScreenPosition%
 	gotoScreen()
 }
+if (currScreen > 9 and currScreen < 21)
+{
+	; implement some sort of focus management or navigation system
+}
 return
 
 +Space::
@@ -533,6 +537,10 @@ screenProcess(targetScreenNum)
 	else if (targetScreenNum = 3) ; PRACTICE CUSTOM DECKS
 	{
 		sleep 3000
+		; If the player used a basic deck previously, Hearthstone will start on what we consider Screen 4
+		; Force Screen 3
+		MoveClick(.24,.05)
+		
 		; If no custom decks exist, the left arrow to "Basic Decks" won't exist
 		; If this is the case, the colors ~should~ be the ones below for the spots below
 		; So...if there isn't a custom deck...ko-hearthstone will create one with some help from Blizzard

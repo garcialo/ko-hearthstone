@@ -148,12 +148,6 @@ if (currScreenPosition >= screenSizes%currScreen%)
 	currScreenPosition := 0
 }
 MoveMouse()
-
-if (debug)
-{
-	targetTemp := target%currScreen%_%currScreenPosition%
-	ToolTip, Screen %currScreen% Current Position %currScreenPosition% GoesTo %targetTemp%, 110,5
-}
 return
 
 +Tab::
@@ -163,12 +157,8 @@ if (currScreenPosition < 0)
 	currScreenPosition := screenSizes%currScreen% - 1
 }
 MoveMouse()
+return
 
-if (debug)
-{
-	targetTemp := target%currScreen%_%currScreenPosition%
-	ToolTip, Screen %currScreen% Current Position %currScreenPosition% GoesTo %targetTemp%, 110,5
-}
 return
 
 Space::
@@ -184,6 +174,11 @@ if (target%currScreen%_%currScreenPosition% > -1)
 if (currScreen > 9 and currScreen < 21)
 {
 	; implement some sort of focus management or navigation system
+}
+
+if (%debug%)
+{
+	debugInfo()
 }
 return
 
@@ -373,7 +368,7 @@ addScreenPosition(x,y,targetScreen)
 	target%currScreen%_%currScreenPosition% := targetScreen
 
 	; capturing information before resetting for next position
-	if(debug)
+	if(%debug%)
 	{
 		kolog("SENT for " currScreenPosition " x/y/target: " x "/" y "/" targetScreen)
 	}
@@ -480,10 +475,6 @@ gotoScreen()
 	currScreenPosition := prevPos%currScreen%
 
 	MoveMouse()
-	if(debug)
-	{
-		ToolTip, FullscreenOn %fullscreen% Screen %currScreen% H %height% W %width% playH %playHeight% playW %playWidth% , 110,5
-	}
 }
 
 MoveMouse()
@@ -498,6 +489,16 @@ MoveMouse()
 	local y := zeroY - yOff
 
 	MouseMove, x, y
+
+	; update currentSection
+	nextSection := currentSection + 1
+	if ( currentPosition)
+	
+	
+	if (%debug%)
+	{
+		debugInfo()
+	}
 }
 
 MoveClick(xOff,yOff)
@@ -709,7 +710,7 @@ global
 	px := -.44
 	py := -.90
 
-	if (debug)
+	if (%debug%)
 	{
 		draw(ox,oy)
 		Send {F1}
@@ -873,7 +874,7 @@ assert(condition, lineNumber)
 ; when calling, lineNumber should always be A_LineNumber
 
 	global
-	if (debug) and (not condition)
+	if (%debug%) and (not %condition%)
 	{
 		MsgBox Assert Hit at %lineNumber%
 		ExitApp
@@ -892,3 +893,16 @@ kolog(addToLog)
 		}
 	}
 }
+
+debugInfo()
+{
+	global
+	targetTemp := target%currScreen%_%currScreenPosition%
+	tempNumSections := screenSections%currScreen%
+	tempNumPositions := screenSizes%currScreen%
+
+	ToolTip
+		, Screen %currScreen% `nNumber of Sections %tempNumSections% `nNumber of Positions %tempNumPositions% `nCurrent Section %currScreenSection% `nCurrent Position %currScreenPosition% `n--GoesTo %targetTemp%
+		, 110,5
+}
+

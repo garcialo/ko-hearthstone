@@ -50,10 +50,12 @@ addScreenPosition(0,0,1) ; > 1 MAIN MENU
 completeScreen()
 
 ; 1 MAIN MENU
+addScreenSection()
 addScreenPosition(0,.38,99) ; PLAY
 addScreenPosition(0,.25,2) ; SOLO
 addScreenPosition(0,.1,99) ; ARENA
 addScreenPosition(0,-.05,99) ; TAVERN BRAWL
+addScreenSection()
 addScreenPosition(-.84,-.73,99) ; SHOP
 addScreenPosition(-.58,-.73,99) ; QUEST LOG
 addScreenPosition(-.26,-.69,99) ; OPEN PACKS
@@ -61,17 +63,20 @@ addScreenPosition(.14,-.69,99) ; MY COLLECTION
 completeScreen()
 
 ; 2 SOLO
+addScreenSection()
 addScreenPosition(.6,.58,-1) ; Select Normal
 addScreenPosition(.6,.45,-1) ; Select Expert
 addScreenPosition(.6,.28,99) ; MOST RECENT ADVENTURE
 addScreenPosition(.6,.05,99) ; SECOND MOST RECENT ADVENTURE
 addScreenPosition(.6,-.18,99) ; THIRD MOST RECENT ADVENTURE
 addScreenPosition(.6,-.41,99) ; FOURTH MOST RECENT ADVENTURE
+addScreenSection()
 addScreenPosition(.6,-.64,3) ; CHOOSE
 addScreenPosition(.88,-0.84,1) ; BACK
 completeScreen()
 
 ; 3 PRACTICE CUSTOM DECKS
+addScreenSection()
 addScreenPosition(-.68,.44,-1) ; Custom Deck Slots 1
 addScreenPosition(-.34,.44,-1) ; 2
 addScreenPosition(-.02,.44,-1) ; 3
@@ -81,15 +86,18 @@ addScreenPosition(-.02,.02,-1) ; 6
 addScreenPosition(-.68,-.38,-1) ; 7
 addScreenPosition(-.34,-.38,-1) ; 8
 addScreenPosition(-.02,-.38,-1) ; 9 - End Custom Deck Slots
+addScreenSection()
 addScreenPosition(-.94,.04,4) ; Basic Decks
 addScreenPosition(-.34,-.81,99) ; My Collection
 addScreenPosition(.78,.07,-1) ; Hero Ability
 addScreenPosition(.62,-.09,-1) ; Hero Experience
+addScreenSection()
 addScreenPosition(.62,-.62,6) ; CHOOSE
 addScreenPosition(.88,-.84,2) ; BACK
 completeScreen()
 
 ; 4 PRACTICE BASIC DECKS
+addScreenSection()
 addScreenPosition(-.68,.44,-1) ; Basic Deck Slots 1
 addScreenPosition(-.34,.44,-1) ; 2
 addScreenPosition(-.02,.44,-1) ; 3
@@ -99,15 +107,18 @@ addScreenPosition(-.02,.02,-1) ; 6
 addScreenPosition(-.68,-.38,-1) ; 7
 addScreenPosition(-.34,-.38,-1) ; 8
 addScreenPosition(-.02,-.38,-1) ; 9 - End Basic Deck Slots
+addScreenSection()
 addScreenPosition(.24,.04,3) ; Custom Decks
 addScreenPosition(-.34,-.81,99) ; My Collection
 addScreenPosition(.78,.07,-1) ; Hero Ability
 addScreenPosition(.62,-.09,-1) ; Hero Experience
+addScreenSection()
 addScreenPosition(.62,-.62,5) ; CHOOSE
 addScreenPosition(.88,-.84,2) ; BACK
 completeScreen()
 
 ; 5 PRACTICE BASIC DECKS CHOOSE OPPONENT
+addScreenSection()
 addScreenPosition(.65,.76,-1) ; Opponent Slots 1
 addScreenPosition(.65,.64,-1) ; 2
 addScreenPosition(.65,.52,-1) ; 3
@@ -117,8 +128,10 @@ addScreenPosition(.65,.15,-1) ; 6
 addScreenPosition(.65,.03,-1) ; 7
 addScreenPosition(.65,-.08,-1) ; 8
 addScreenPosition(.65,-.21,-1) ; 9 - End Opponent Slots
+addScreenSection()
 addScreenPosition(.62,-.62,7) ; PLAY
 addScreenPosition(.88,-.84,4) ; BACK
+addScreenSection()
 addScreenPosition(-.68,.44,-1) ; Basic Deck Slots 1
 addScreenPosition(-.34,.44,-1) ; 2
 addScreenPosition(-.02,.44,-1) ; 3
@@ -128,11 +141,13 @@ addScreenPosition(-.02,.02,-1) ; 6
 addScreenPosition(-.68,-.38,-1) ; 7
 addScreenPosition(-.34,-.38,-1) ; 8
 addScreenPosition(-.02,-.38,-1) ; 9 - End Basic Deck Slots
+addScreenSection()
 addScreenPosition(.24,.04,6) ; Custom Decks Choose Opponent
 addScreenPosition(-.34,-.81,99) ; My Collection
 completeScreen()
 
 ; 6 PRACTICE CUSTOM DECKS CHOOSE OPPONENT
+addScreenSection()
 addScreenPosition(.65,.76,-1) ; Opponent Slots 1
 addScreenPosition(.65,.64,-1) ; 2
 addScreenPosition(.65,.52,-1) ; 3
@@ -142,8 +157,10 @@ addScreenPosition(.65,.15,-1) ; 6
 addScreenPosition(.65,.03,-1) ; 7
 addScreenPosition(.65,-.08,-1) ; 8
 addScreenPosition(.65,-.21,-1) ; 9 - End Opponent Slots
+addScreenSection()
 addScreenPosition(.62,-.62,7) ; PLAY
 addScreenPosition(.88,-.84,3) ; BACK
+addScreenSection()
 addScreenPosition(-.68,.44,-1) ; Custom Deck Slots 1
 addScreenPosition(-.34,.44,-1) ; 2
 addScreenPosition(-.02,.44,-1) ; 3
@@ -153,32 +170,40 @@ addScreenPosition(-.02,.02,-1) ; 6
 addScreenPosition(-.68,-.38,-1) ; 7
 addScreenPosition(-.34,-.38,-1) ; 8
 addScreenPosition(-.02,-.38,-1) ; 9 - End Basic Deck Slots
+addScreenSection()
 addScreenPosition(-.94,.04,5) ; Basic Decks Choose Opponent
 addScreenPosition(-.34,-.81,99) ; My Collection
 completeScreen()
 
 ; 7 STARTING HAND 3 CARDS
+addScreenSection()
 addScreenPosition(-.48,0,-1) ; Starting Cards 1
 addScreenPosition(0,0,-1) ; 2
 addScreenPosition(.48,0,-1) ; 3 - End Starting Cards
+addScreenSection()
 addScreenPosition(.01,-.55,9) ; CONFIRM
 completeScreen()
 
 ; 8 STARTING HAND 4 CARDS
+addScreenSection()
 addScreenPosition(-.52,0,-1) ; Starting Cards 1
 addScreenPosition(-.18,0,-1) ; 2
 addScreenPosition(.18,0,-1) ; 3
 addScreenPosition(.52,0,-1) ; 4 - End Starting Cards
+addScreenSection()
 addScreenPosition(.01,-.55,9) ; CONFIRM
 completeScreen()
 
 ; 9 GAME STATUS SCREEN
+addScreenSection()
 addScreenPosition(0,.9,-1) ; Enemy Hand
 addScreenPosition(-.22,.54,-1) ; Enemy Weapon
 addScreenPosition(.22,.54,-1) ; Enemy Ability
 addScreenPosition(.94,.41,-1) ; Enemy Deck
+addScreenSection()
 addScreenPosition(.94,-.15,-1) ; Player Deck
 ; Enemy Cards at some point
+addScreenSection()
 addScreenPosition(-.88,.39,-1) ; Game History 1
 addScreenPosition(-.88,.34,-1) ; 2
 addScreenPosition(-.88,.27,-1) ; 3
@@ -195,21 +220,25 @@ addScreenPosition(-.88,-.3,-1) ; 13 - End Game History
 completeScreen()
 
 ; 10 GAME PLAY SCREEN - 0 CARDS
+addScreenSection()
 addGameplayCommon()
 completeScreen()
 
 ; 11 GAME PLAY SCREEN - 1 CARD
+addScreenSection()
 addScreenPosition(-.04,-.9,-1) ; Hand
 addGameplayCommon()
 completeScreen()
 
 ; 12 GAME PLAY SCREEN - 2 CARDS
+addScreenSection()
 addScreenPosition(-.13,-.9,-1) ; Hand Begin
 addScreenPosition(.04,-.9,-1) ; Hand End
 addGameplayCommon()
 completeScreen()
 
 ; 13 GAME PLAY SCREEN - 3 CARDS
+addScreenSection()
 addScreenPosition(-.23,-.9,-1) ; Hand Begin
 addScreenPosition(-.06,-.9,-1)
 addScreenPosition(.14,-.9,-1) ; Hand Ends
@@ -217,6 +246,7 @@ addGameplayCommon()
 completeScreen()
 
 ; 14 GAME PLAY SCREEN - 4 CARDS
+addScreenSection()
 addScreenPosition(-.33,-.9,-1) ; Hand Begin
 addScreenPosition(-.15,-.9,-1)
 addScreenPosition(.04,-.9,-1)
@@ -225,6 +255,7 @@ addGameplayCommon()
 completeScreen()
 
 ; 15 GAME PLAY SCREEN - 5 CARDS
+addScreenSection()
 addScreenPosition(-.38,-.9,-1) ; Hand Begin
 addScreenPosition(-.22,-.9,-1)
 addScreenPosition(-.08,-.9,-1)
@@ -234,6 +265,7 @@ addGameplayCommon()
 completeScreen()
 
 ; 16 GAME PLAY SCREEN - 6 CARDS
+addScreenSection()
 addScreenPosition(-.41,-.9,-1) ; Hand Begin
 addScreenPosition(-.27,-.9,-1)
 addScreenPosition(-.14,-.9,-1)
@@ -244,6 +276,7 @@ addGameplayCommon()
 completeScreen()
 
 ; 17 GAME PLAY SCREEN - 7 CARDS
+addScreenSection()
 addScreenPosition(-.42,-.9,-1) ; Hand Begin
 addScreenPosition(-.30,-.9,-1)
 addScreenPosition(-.2,-.9,-1)
@@ -255,6 +288,7 @@ addGameplayCommon()
 completeScreen()
 
 ; 18 GAME PLAY SCREEN - 8 CARDS
+addScreenSection()
 addScreenPosition(-.9,-.9,-1) ; Hand Begin
 addScreenPosition(-.34,-.9,-1)
 addScreenPosition(-.24,-.9,-1)
@@ -267,6 +301,7 @@ addGameplayCommon()
 completeScreen()
 
 ; 19 GAME PLAY SCREEN - 9 CARDS
+addScreenSection()
 addScreenPosition(-.45,-.9,-1) ; Hand Begin
 addScreenPosition(-.35,-.9,-1)
 addScreenPosition(-.26,-.9,-1)
@@ -280,6 +315,7 @@ addGameplayCommon()
 completeScreen()
 
 ; 20 GAME PLAY SCREEN - 10 CARDS
+addScreenSection()
 addScreenPosition(-.47,-.9,-1) ; Hand Begin
 addScreenPosition(-.37,-.9,-1)
 addScreenPosition(-.29,-.9,-1)

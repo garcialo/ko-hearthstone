@@ -109,11 +109,12 @@ maxY := Floor(playHeight / 2)
 ; logging final variables for use
 kolog("Fullscreen: " fullscreen "`nWindow Width/Height: " width " x " height "`nPlay Width/Height: " playWidth " x " playHeight "`nZeroX/ZeroY: " zeroX " x " zeroY "`nMaxX/MaxY: " maxX " x " maxY "`n")
 
-; Setting up Screens and Screen Mouse Positions
+; Setting up Screens, Screen Mouse Positions, and Screen Sections
 currScreen := 0
 currScreenPosition := 0
+currScreenSection := 0
 
-; Import Screen Positions
+; Import Screen Position and Screen Section definitions
 #Include ko-hearthstone-screens.ahk
 
 ; Initialize user environment
@@ -122,6 +123,7 @@ WinActivate Hearthstone
 
 currScreen := 0
 currScreenPosition := 0
+currScreenSection := 0
 
 ; wait for Hearthstone to fully load
 Suspend, on
@@ -143,7 +145,7 @@ return
 
 Tab::
 currScreenPosition += 1
-if (currScreenPosition >= screenSizes%currScreen%)
+if (currScreenPosition >= numPositions%currScreen%)
 {
 	currScreenPosition := 0
 }
@@ -154,11 +156,29 @@ return
 currScreenPosition -= 1
 if (currScreenPosition < 0)
 {
-	currScreenPosition := screenSizes%currScreen% - 1
+	currScreenPosition := numPositions%currScreen% - 1
 }
 MoveMouse()
 return
 
+d::
+tempNextSection := currScreenSection + 1
+if (tempNextSection >= numSections%currScreen%)
+{
+	tempNextSection := 0
+}
+currScreenPosition := sectionStarts%currScreen%_%tempNextSection%
+MoveMouse()
+return
+
++d::
+tempPrevSection := currScreenSection - 1
+if (tempPrevSection < 0)
+{
+	tempPrevSection := numSections%currScreen% - 1
+}
+currScreenPosition := sectionStarts%currScreen%_%tempPrevSection%
+MoveMouse()
 return
 
 Space::
@@ -365,21 +385,62 @@ addScreenPosition(x,y,targetScreen)
 	screenX%currScreen%_%currScreenPosition% := x
 	screenY%currScreen%_%currScreenPosition% := y
 
+	screenSection%currScreen%_%currScreenPosition% := currScreenSection
+
 	target%currScreen%_%currScreenPosition% := targetScreen
 
 	; capturing information before resetting for next position
 	if(%debug%)
 	{
-		kolog("SENT for " currScreenPosition " x/y/target: " x "/" y "/" targetScreen)
+		kolog("SENT for " currScreenPosition " x/y/target/section: " x "/" y "/" targetScreen "/" currScreenSection)
 	}
 	
-	; resettng for next position
+	; setting for next position
 	currScreenPosition += 1
+}
+
+addScreenSection()
+{
+	global
+	if (currScreenPosition > 0)
+	{
+		currScreenSection += 1
+	}
+	sectionStarts%currScreen%_%currScreenSection% := currScreenPosition
+}
+
+completeScreen()
+{
+	global
+	prevPos%currScreen% := 0
+	numPositions%currScreen% := currScreenPosition
+	numSections%currScreen% := currScreenSection + 1
+
+	; capturing informatoin before resetting for next screen completion
+	if(%debug%)
+	{
+		kolog("Completing Screen: " currScreen)
+		Loop %currScreenPosition%
+		{
+			actualIndex := A_Index - 1
+			testSection := screenSection%currScreen%_%actualIndex%
+			testX := screenX%currScreen%_%actualIndex%
+			testY := screenY%currScreen%_%actualIndex%
+			kolog("Section/Position: " testSection "/" actualIndex " -- X/Y: " testX "/" testY)
+		}
+		kolog("")
+	}
+
+	; resetting for next screen completion
+	currScreen += 1
+	currScreenPosition := 0
+	currScreenSection := 0
 }
 
 addGameplayCommon()
 {
 	; battlefield positions 13 for player
+	addScreenSection()
 	addScreenPosition(-.57,-.09,-1)
 	addScreenPosition(-.48,-.09,-1)
 	addScreenPosition(-.38,-.09,-1)
@@ -395,6 +456,7 @@ addGameplayCommon()
 	addScreenPosition(.58,-.09,-1)
 	
 	; battlefield positions 13 for enemy
+	addScreenSection()
 	addScreenPosition(-.57,.25,-1)
 	addScreenPosition(-.48,.25,-1)
 	addScreenPosition(-.38,.25,-1)
@@ -410,6 +472,7 @@ addGameplayCommon()
 	addScreenPosition(.58,.25,-1)
 	
 	; non-battlefield positions
+	addScreenSection()
 	addScreenPosition(.84,.1,9) ; End Turn
 	addScreenPosition(0,.54,-1) ; Enemy Portrait
 	addScreenPosition(0,-.54,-1) ; Player Portrait
@@ -428,31 +491,6 @@ addFooter()
 	addScreenPosition(foff,-.9,??) ; FRIENDS
 	addScreenPosition(goff,-.9,-1) ; GOLD
 	addScreenPosition(moff,-.9,??) ; GAME MENU
-}
-
-completeScreen()
-{
-	global
-	prevPos%currScreen% := 0
-	screenSizes%currScreen% := currScreenPosition
-
-	; capturing informatoin before resetting for next screen completion
-	if(debug)
-	{
-		kolog("Completing Screen: " currScreen)
-		Loop %currScreenPosition%
-		{
-			actualIndex := A_Index - 1
-			testX := screenX%currScreen%_%actualIndex%
-			testY := screenY%currScreen%_%actualIndex%
-			kolog("Position: " actualIndex " -- X/Y: " testX "/" testY)
-		}
-		kolog("")
-	}
-
-	; resetting for next screen completion
-	currScreen += 1
-	currScreenPosition := 0
 }
 
 gotoScreen()
@@ -489,11 +527,8 @@ MoveMouse()
 	local y := zeroY - yOff
 
 	MouseMove, x, y
-
-	; update currentSection
-	nextSection := currentSection + 1
-	if ( currentPosition)
 	
+	currScreenSection := screenSection%currScreen%_%currScreenPosition%
 	
 	if (%debug%)
 	{
@@ -898,11 +933,12 @@ debugInfo()
 {
 	global
 	targetTemp := target%currScreen%_%currScreenPosition%
-	tempNumSections := screenSections%currScreen%
-	tempNumPositions := screenSizes%currScreen%
+	tempNumSections := numSections%currScreen%
+	tempNumPositions := numPositions%currScreen%
+	tempCurrentSectionStart := sectionStarts%currScreen%_%currScreenSection%
 
 	ToolTip
-		, Screen %currScreen% `nNumber of Sections %tempNumSections% `nNumber of Positions %tempNumPositions% `nCurrent Section %currScreenSection% `nCurrent Position %currScreenPosition% `n--GoesTo %targetTemp%
+		, Screen %currScreen% `nNumber of Sections %tempNumSections% `nNumber of Positions %tempNumPositions% `nCurrent Section %currScreenSection% `nCurrent Position %currScreenPosition% `n--GoesTo %targetTemp% `nCurrent Section Start %tempCurrentSectionStart%
 		, 110,5
 }
 

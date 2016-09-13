@@ -441,43 +441,45 @@ addGameplayCommon()
 {
 	; battlefield positions 13 for player
 	addScreenSection()
-	addScreenPosition(-.57,-.09,-1)
-	addScreenPosition(-.48,-.09,-1)
-	addScreenPosition(-.38,-.09,-1)
-	addScreenPosition(-.28,-.09,-1)
-	addScreenPosition(-.18,-.09,-1)
-	addScreenPosition(-.09,-.09,-1)
-	addScreenPosition(0,-.09,-1)
-	addScreenPosition(.1,-.09,-1)
-	addScreenPosition(.2,-.09,-1)
-	addScreenPosition(.3,-.09,-1)
-	addScreenPosition(.39,-.09,-1)
-	addScreenPosition(.48,-.09,-1)
-	addScreenPosition(.58,-.09,-1)
+	addScreenPosition(0,-.09,-1) ; 7
+	addScreenPosition(-.09,-.09,-1) ; 6
+	addScreenPosition(.1,-.09,-1) ; 8
+	addScreenPosition(-.18,-.09,-1) ; 5
+	addScreenPosition(.2,-.09,-1) ; 9
+	addScreenPosition(-.28,-.09,-1) ; 4
+	addScreenPosition(.3,-.09,-1) ; 10
+	addScreenPosition(-.38,-.09,-1) ; 3
+	addScreenPosition(.39,-.09,-1) ; 11
+	addScreenPosition(-.48,-.09,-1) ; 2
+	addScreenPosition(.48,-.09,-1) ; 12
+	addScreenPosition(-.57,-.09,-1) ; 1
+	addScreenPosition(.58,-.09,-1) ; 13
 	
 	; battlefield positions 13 for enemy
 	addScreenSection()
-	addScreenPosition(-.57,.25,-1)
-	addScreenPosition(-.48,.25,-1)
-	addScreenPosition(-.38,.25,-1)
-	addScreenPosition(-.28,.25,-1)
-	addScreenPosition(-.18,.25,-1)
-	addScreenPosition(-.09,.25,-1)
-	addScreenPosition(0,.25,-1)
-	addScreenPosition(.1,.25,-1)
-	addScreenPosition(.2,.25,-1)
-	addScreenPosition(.3,.25,-1)
-	addScreenPosition(.39,.25,-1)
-	addScreenPosition(.48,.25,-1)
-	addScreenPosition(.58,.25,-1)
+	addScreenPosition(0,.25,-1) ; 7
+	addScreenPosition(-.09,.25,-1) ; 6
+	addScreenPosition(.1,.25,-1) ; 8
+	addScreenPosition(-.18,.25,-1) ; 5
+	addScreenPosition(.2,.25,-1) ; 9
+	addScreenPosition(-.28,.25,-1) ; 4
+	addScreenPosition(.3,.25,-1) ; 10
+	addScreenPosition(-.38,.25,-1) ; 3
+	addScreenPosition(.39,.25,-1) ; 11
+	addScreenPosition(-.48,.25,-1) ; 2
+	addScreenPosition(.48,.25,-1) ; 12
+	addScreenPosition(-.57,.25,-1) ; 1
+	addScreenPosition(.58,.25,-1) ; 13
 	
 	; non-battlefield positions
 	addScreenSection()
 	addScreenPosition(.84,.1,9) ; End Turn
+	addScreenSection()
 	addScreenPosition(0,.54,-1) ; Enemy Portrait
-	addScreenPosition(0,-.54,-1) ; Player Portrait
-	addScreenPosition(-.22,-.54,-1) ; Player Weapon
+	addScreenSection()
 	addScreenPosition(.22,-.54,-1) ; Player Ability
+	addScreenPosition(0,-.54,-1) ; Player Portrait
+	addScreenPosition(-.22,-.54,-1) ; Player Weapon	
 }
 
 addFooter()

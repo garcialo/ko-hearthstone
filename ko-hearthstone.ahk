@@ -127,10 +127,10 @@ currScreenSection := 0
 
 ; wait for Hearthstone to fully load
 Suspend, on
-ToolTip, ko-hearthstone is waiting for Hearthstone to load, zeroX,zeroY
+tellPlayer("ko-hearthstone is waiting for Hearthstone to load","centered")
 sleep 17000
 Suspend, off
-ToolTip
+tellPlayerEnd()
 MoveMouse()
 
 ; The overlay is now in place. The script should run until closed by the user.
@@ -498,22 +498,12 @@ addFooter()
 gotoScreen()
 {
 	global
-	; display ToolTip
-	ToolTip, ko-hearthstone is working..., zeroX, zeroY
-
-	; disable user controls
-	Suspend, on
-
+	tellPlayer("ko-hearthstone is working...","centered")
+	Suspend, on ; disable user controls
 	screenProcess(currScreen)
-
-	; re-enable hotkeys
 	Suspend, off
-
-	; disable ToolTip
-	ToolTip
-	
+	tellPlayerEnd()
 	currScreenPosition := prevPos%currScreen%
-
 	MoveMouse()
 }
 
@@ -547,6 +537,24 @@ MoveClick(xOff,yOff)
 	MouseMove x,y
 	Send {Click}
 	sleep 50
+}
+
+tellPlayer(message,position)
+{
+	global	
+	ToolTip, %message%, zeroX, zeroY
+
+	WinGetPos, ttX,ttY,ttW,ttH, ahk_class tooltips_class32
+	moveLeft := ttW / 2
+	moveUp := ttH / 2
+	newX := ttX - moveLeft
+	newY := ttY - moveUp
+	WinMove, ahk_class tooltips_class32,, newX, newY
+}
+
+tellPlayerEnd()
+{
+	ToolTip
 }
 
 screenProcess(targetScreenNum)
@@ -600,7 +608,7 @@ screenProcess(targetScreenNum)
 
 		if (noButton)
 		{
-			ToolTip, ko-hearthstone is CREATING A DECK, zeroX, zeroY
+			tellPlayer("ko-hearthstone is CREATING A DECK","centered")
 			
 			; Move to BACK and click
 			MoveClick(.88,-.9)
@@ -646,7 +654,7 @@ screenProcess(targetScreenNum)
 	}
 	else if (targetScreenNum = 7) ; STARTING HAND
 	{
-		ToolTip, ko-hearthstone is waiting for the match to start, zeroX,zeroY
+		tellPlayer("ko-hearthstone is waiting for the match to start","centered")
 		sleep 25000
 
 		fourCards := false
@@ -901,7 +909,7 @@ askHandSize()
 		handSize = -1
 		while (handSize < 0)
 		{
-			ToolTip, What is your current hand size? (Please use the number keys)`n(Type 0 for 10 and type ` for 0), zeroX,zeroY
+			tellPlayer("What is your current hand size? (Please use the number keys)`n(Type 0 for 10 and type ` for 0)","centered")
 			sleep 500
 		}
 }
@@ -943,4 +951,3 @@ debugInfo()
 		, Screen %currScreen% `nNumber of Sections %tempNumSections% `nNumber of Positions %tempNumPositions% `nCurrent Section %currScreenSection% `nCurrent Position %currScreenPosition% `n--GoesTo %targetTemp% `nCurrent Section Start %tempCurrentSectionStart%
 		, 110,5
 }
-

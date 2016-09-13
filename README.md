@@ -47,6 +47,7 @@ Please [create an issue](https://github.com/garcialo/ko-hearthstone/issues/new) 
 ## Special Thanks
 The following individuals have helped me indirectly or directly in the development of this game. This project would not have been possible without their support.
 * Rebecky Carpenter
+* Caitlin Geier
 * Neelima Premsankar
 * Eric Tschetter
 * Rob

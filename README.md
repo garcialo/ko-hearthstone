@@ -7,7 +7,8 @@ An attempt to make Hearthstone playable with keyboard only.
 
 ### Prerequisites
 * MS Windows
-* [Install AutoHotKey v1.1](https://www.autohotkey.com/download/1.1/)
+* [Install AutoHotKey v1.1](https://www.autohotkey.com/download/ahk-install.exe)
+  * Note: [Link above throws Google Safe Browsing false positive](https://www.autohotkey.com/download/safe.htm)
 * [Install Hearthstone](https://us.battle.net/account/download/)
 * MUST have the Shortcut in your Start Menu  - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Hearthstone\Hearthstone
 * Probably need to launch Hearthstone at least once so it creates an options.txt in %LocalAppData%\Blizzard\Hearthstone\
@@ -35,6 +36,8 @@ Please [create an issue](https://github.com/garcialo/ko-hearthstone/issues/new) 
 ### General Commands
 * Tab: Next item
 * Shift+Tab: Previous item
+* d: Next section (for screens with sections)
+* Shift+d: Previous section (for screens with sections)
 * Space or Enter: Click
 * Shift+Space: Right-click
 * q: Exit

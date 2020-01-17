@@ -1,9 +1,10 @@
+#NoEnv
 #SingleInstance force
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ; global variables
-debug = false
-logging = false
+debug := false
+logging := true
 handSize = 0
 
 ; globals used by checkHandSize
@@ -26,28 +27,33 @@ WinGetPos,,, width, height, Hearthstone
 ; settings file contains variables for fullscreen/height/width
 ; height and width reflect play area resolution, not play area size
 ; height/width only useful if in windowed mode
+EnvGet, LocalAppData, LocalAppData
 settingsFile = %LocalAppData%\Blizzard\Hearthstone\options.txt
 
-; checking if fullscreen or not
-try
-	FileReadLine, userSettingFullscreen, %settingsFile%, 3
-catch e
+; read through settings file and store settings if they exist
+Loop, read, %settingsFile%
 {
-	MsgBox % "Error - " e.What
-	closeGame()
-}
-if not ErrorLevel
-{
-	; get enough characters to check whether is 'graphicsfullscreen=True'
-	StringRight, userSettingIsFullscreen, userSettingFullscreen, 4
-	fullscreen := userSettingIsFullscreen = "True"
+  Loop, parse, A_LoopReadLine, =
+  {
+;  MsgBox %A_LoopReadLine%
+    if (A_LoopField == "graphicsfullscreen")
+    {
+      fullscreen := SubStr(A_LoopReadLine, 20)
+;      MsgBox fullscreen is %fullscreen%
+    }
+    else if (A_LoopField == "graphicsheight")
+    {
+      userSettingHeight := SubStr(A_LoopReadLine, 16)
+    }
+    else if (A_LoopField == "graphicswidth")
+    {
+      userSettingWidth := SubStr(A_LoopReadLine, 15)
+    }
+  }
 }
 
 playHeight := 0
 playWidth := 0
-
-; zeroX is half screen width ; if bordered, the border sizes cancel out
-zeroX := width / 2
 
 if (fullscreen)
 {
@@ -66,33 +72,16 @@ else
 	SysGet, titleBarSize, 4
 
 	; getting play area size from settings file
-	try
-		FileReadLine, userSettingHeight, %settingsFile%, 4
-	catch e
-	{
-		MsgBox % "Error - " e.What
-		closeGame()
-	}
-	if not ErrorLevel
-	{
-		playHeight := SubStr(userSettingHeight, 16)
-	}
-
-	try
-		FileReadLine, userSettingWidth, %settingsFile%, 6
-	catch e
-	{
-		MsgBox % "Error - " e.What
-		closeGame()
-	}
-	if not ErrorLevel
-	{
-		playWidth := SubStr(userSettingWidth, 15)
-	}
+  playHeight := userSettingHeight
+  playWidth := userSettingWidth
 
 	; zeroY is half window height; and lowered to account for size of title bar
 	zeroY := titleBarSize + topBottomBorderSize + (playHeight / 2)
 }
+
+; zeroX is half screen width ; if bordered, the border sizes cancel out
+zeroX := width / 2
+
 
 ; any window area beyond minWidth is just padding
 ; the usable horizontal space is determined relative to the playscreen height
@@ -340,8 +329,40 @@ launchGame()
 	
 	; Calling the shortcut in the Start Menu works. Hopefully you created one. =p
 	; Run C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Hearthstone\Hearthstone
-	; calling the Start Menu shortcut generically
-	Run, %A_ProgramsCommon%\Hearthstone\Hearthstone,, UseErrorLevel
+	; calling the Start Menu shortcut generically...stopped working
+	; Run, %A_ProgramsCommon%\Hearthstone\Hearthstone,, UseErrorLevel
+  
+  ; Checking Registry for Installation Directory
+  ; When launching directly from the exe the following happens:
+  ; 1. Hearthstone window opens
+  ; 2. Battle.net window becomes active or launches
+  ; 3. Hearthstone window closes
+  ; so we should...
+  ; 1. Launch Hearthstone.exe
+  ; 2. Wait until Hearthstone is open
+  ; 3. Wait until Battle.net is open, this would be instant if it was already open
+  ; 4. Wait until Hearthstone is closed
+  ; 5. Repeast Activating Battle.net and clicking 'play' until Hearthstone is open again
+  RegRead, installationDirectory, HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Hearthstone, InstallLocation
+  Run, %installationDirectory%\Hearthstone.exe,, UseErrorLevel
+  WinWait Hearthstone
+  WinWait Blizzard Battle.net
+  WinWaitClose Hearthstone
+  while not WinExist("Hearthstone")
+  {
+    WinActivate Blizzard Battle.net
+
+    ; Put mouse cursor on PLAY
+    WinGetPos,,,,battleHeight,Blizzard Battle.net
+    xBattlePlay = 287
+    yBattlePlay := battleHeight - 70
+
+    MouseMove, xBattlePlay, yBattlePlay
+    sleep 50
+    Send {Click}
+    sleep 50  
+  }
+
 	if ErrorLevel
 	{
 		kolog("Launch: " ErrorLevel)
@@ -351,18 +372,6 @@ launchGame()
 	{
 		kolog("Launch: SUCCESS :: Battle.net")
 	}
-	WinWait Battle.net
-	WinActivate Battle.net
-
-; Put mouse cursor on PLAY
-	WinGetPos,,,,battleHeight,Battle.net
-	xBattlePlay = 287
-	yBattlePlay := battleHeight - 70
-
-	MouseMove, xBattlePlay, yBattlePlay
-	sleep 50
-	Send {Click}
-	sleep 50
 	
 	WinWait Hearthstone
 	kolog("Launch: SUCCESS :: Hearthstone")
@@ -374,7 +383,7 @@ closeGame()
 	kolog(timestamp)
 	kolog("Closing Hearthstone`n")
 	WinKill Hearthstone
-	WinKill Battle.net
+	WinKill Blizzard Battle.net
 	; WinShow ahk_class Shell_TrayWnd
 	ExitApp
 }
@@ -485,7 +494,7 @@ addGameplayCommon()
 addFooter()
 {
 	global
-	assert(maxX <> 0, A_LineNumber)
+	assert(maxX != 0, A_LineNumber)
 	local foff := -.94 * playWidth / maxX
 	local goff := .80 * playWidth / maxX
 	local moff := .94 * playWidth / maxX
@@ -929,7 +938,7 @@ assert(condition, lineNumber)
 kolog(addToLog)
 {
 	global
-	if (logging)
+ 	if (logging)
 	{
 		FileAppend, %addToLog%`n, koh.log
 		If ErrorLevel
